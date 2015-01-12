@@ -135,10 +135,12 @@
 			</testResource>
 		</testResources>
 		
+		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-dependency-plugin</artifactId>
 			</plugin>
+		</plugins>
 		
 		<pluginManagement>
 			<plugins>
