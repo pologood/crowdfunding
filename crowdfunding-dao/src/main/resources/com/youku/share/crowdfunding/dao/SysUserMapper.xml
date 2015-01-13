@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.youku.share.crowdfunding.dao.SysUserMapper" >
+
+    <resultMap id="BaseResultMap" type="com.youku.share.crowdfunding.po.SysUser" >
+        <id column="user_id" property="userId" jdbcType="BIGINT" />
+        <result column="user_name" property="userName" jdbcType="VARCHAR" />
+        <result column="password" property="password" jdbcType="VARCHAR" />
+        <result column="email" property="email" jdbcType="VARCHAR" />
+    </resultMap>
+    
+    <sql id="BaseColumnListWithoutId">
+        user_name, password, email
+    </sql>
+    <sql id="BaseColumnList">
+        user_id,
+        <include refid="BaseColumnListWithoutId" />
+    </sql>
+    <sql id="SelectiveColumnListWithoutId">
+        <if test="userName != null">user_name,</if>
+        <if test="password != null">password,</if>
+        <if test="email != null">email,</if>
+    </sql>
+    <sql id="BaseValueListWithoutId">
+        #{userName,jdbcType=VARCHAR},
+        #{password,jdbcType=VARCHAR},
+        #{email,jdbcType=VARCHAR}
+    </sql>
+    <sql id="SelectiveValueListWithoutId">
+        <if test="userName != null">#{userName,jdbcType=VARCHAR},</if>
+        <if test="password != null">#{password,jdbcType=VARCHAR},</if>
+        <if test="email != null">#{email,jdbcType=VARCHAR},</if>
+    </sql>
+    <sql id="BaseEqListWithoutId">
+        user_name = #{userName,jdbcType=VARCHAR},
+        password = #{password,jdbcType=VARCHAR},
+        email = #{email,jdbcType=VARCHAR}
+    </sql>
+    <sql id="SelectiveEqListWithoutId">
+        <if test="userName != null">user_name = #{userName,jdbcType=VARCHAR},</if>
+        <if test="password != null">password = #{password,jdbcType=VARCHAR},</if>
+        <if test="email != null">email = #{email,jdbcType=VARCHAR},</if>
+    </sql>
+    <sql id="SelectiveAndPreEqListWithoutId">
+        <if test="userName != null">and user_name = #{userName,jdbcType=VARCHAR}</if>
+        <if test="password != null">and password = #{password,jdbcType=VARCHAR}</if>
+        <if test="email != null">and email = #{email,jdbcType=VARCHAR}</if>
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap"
+        parameterType="java.lang.Long">
+        select
+        <include refid="BaseColumnList" />
+        from sys_user
+        where user_id = #{userId,jdbcType=BIGINT}
+    </select>
+    <insert id="insert" parameterType="com.youku.share.crowdfunding.po.SysUser" useGeneratedKeys="true" keyProperty="userId">
+        insert into sys_user (
+        <include refid="BaseColumnListWithoutId" />
+        )values(
+        <include refid="BaseValueListWithoutId" />
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="com.youku.share.crowdfunding.po.SysUser" useGeneratedKeys="true" keyProperty="userId">
+        insert into sys_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <include refid="SelectiveColumnListWithoutId" />
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <include refid="SelectiveValueListWithoutId" />
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.youku.share.crowdfunding.po.SysUser">
+        update sys_user
+        <trim prefix="SET" suffixOverrides=",">
+            <include refid="SelectiveEqListWithoutId" />
+        </trim>
+        where user_id = #{userId,jdbcType=BIGINT}
+    </update>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from sys_user
+        where user_id = #{userId,jdbcType=BIGINT}
+    </delete>
+    <select id="selectWhere" resultMap="BaseResultMap">
+        select
+        <include refid="BaseColumnList" />
+        from sys_user
+        where 1 = 1
+        <include refid="SelectiveAndPreEqListWithoutId" />
+    </select>
+    <select id="selectPage" resultMap="BaseResultMap">
+        select
+        <include refid="BaseColumnList" />
+        from sys_user
+        where 1 = 1
+        <include refid="SelectiveAndPreEqListWithoutId" />
+        order by ${order_} ${sort_}
+        limit ${limitStart_}, ${limitSize_}
+    </select>
+    <select id="pageCount" resultType="int">
+        select count(1)
+        from sys_user
+        where 1 = 1
+        <include refid="SelectiveAndPreEqListWithoutId" />
+    </select>
+</mapper>

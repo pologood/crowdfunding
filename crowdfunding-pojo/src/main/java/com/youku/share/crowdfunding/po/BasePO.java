@@ -6,7 +6,9 @@ public class BasePO {
 	private String sort_;//正排倒排
 	private int pageNum_ = 1;//当前页号
 	private int pageSize_ = 10;//页大小
+	@SuppressWarnings("unused")
 	private int limitStart_;//mysql查询页号
+	@SuppressWarnings("unused")
 	private int limitSize_;//mysql页大小
 
 	public String getOrder_() {
