@@ -16,12 +16,6 @@ import org.apache.log4j.Logger;
 
 import com.youku.share.crowdfunding.exception.BaseException;
 
-/*
- * 注意这里没有对Ajax请求做处理
- * 可以参考
- * com.youku.share.crowdfunding.web.security.AccessDeniedHandlerImpl
- * 做修改
- */
 public class ExceptionFilter implements Filter {
 
 	private static final Logger logger = Logger.getLogger(ExceptionFilter.class);
@@ -42,12 +36,20 @@ public class ExceptionFilter implements Filter {
 		try {
 			chain.doFilter(req, res);
 		} catch (Throwable t) {
+			
+			/*
+			 * 注意这里没有对Ajax请求做处理
+			 * 可以参考
+			 * com.youku.share.crowdfunding.web.security.AccessDeniedHandlerImpl
+			 * 做修改
+			 */
+			
 			if (t instanceof BaseException) {// 如果是你定义的业务异常
 				request.setAttribute("BsException", t);// 存储业务异常信息类
 				request.getRequestDispatcher(errorPage).forward(request,
 						response);// 跳转到信息提示页面！！
 			}
-			logger.error("Catch Throwable", t);
+			logger.error("Catch Throwable In ExceptionFilter", t);
 		}
 	}
 
