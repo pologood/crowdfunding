@@ -43,4 +43,18 @@
         <include refid="SelectiveAndPreEqListWithoutId" />
     </select>
     
+    <select id="selectBySysUserId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="BaseColumnList" />
+        from sys_user_role_mapping
+        where user_id = ${userId}
+    </select>
+    
+    <select id="selectBySysRoleId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="BaseColumnList" />
+        from sys_user_role_mapping
+        where role_id = ${roleId}
+    </select>
+    
 </mapper>

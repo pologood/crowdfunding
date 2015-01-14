@@ -3,19 +3,19 @@ package com.youku.share.crowdfunding.po;
 import java.util.List;
 
 public class SysUser extends BasePO {
-	private Integer userId;
+	private Long userId;
 	private String userName;
 	private String password;
 	private String email;
 
 	private List<SysRole> sysRoleList;
-	private List<SysUserRoleMapping> sysUserRoleMapping;
+	private List<SysUserRoleMapping> sysUserRoleMappingList;
 
-	public Integer getUserId() {
+	public Long getUserId() {
 		return userId;
 	}
 
-	public void setUserId(Integer userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 
@@ -51,12 +51,13 @@ public class SysUser extends BasePO {
 		this.sysRoleList = sysRoleList;
 	}
 
-	public List<SysUserRoleMapping> getSysUserRoleMapping() {
-		return sysUserRoleMapping;
+	public List<SysUserRoleMapping> getSysUserRoleMappingList() {
+		return sysUserRoleMappingList;
 	}
 
-	public void setSysUserRoleMapping(
-			List<SysUserRoleMapping> sysUserRoleMapping) {
-		this.sysUserRoleMapping = sysUserRoleMapping;
+	public void setSysUserRoleMappingList(
+			List<SysUserRoleMapping> sysUserRoleMappingList) {
+		this.sysUserRoleMappingList = sysUserRoleMappingList;
 	}
+
 }

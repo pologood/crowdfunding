@@ -6,6 +6,7 @@
         <id column="auth_id" property="authId" jdbcType="BIGINT" />
         <result column="description" property="description" jdbcType="VARCHAR" />
         <result column="url" property="url" jdbcType="VARCHAR" />
+        <collection property="sysRoleAuthoritieMappingList" column="auth_id" ofType="SysRoleAuthoritieMapping" select="com.youku.share.crowdfunding.dao.SysRoleAuthoritieMappingMapper.selectBySysAuthoritieId"/>
     </resultMap>
     
     <sql id="BaseColumnListWithoutId">
@@ -95,4 +96,14 @@
         where 1 = 1
         <include refid="SelectiveAndPreEqListWithoutId" />
     </select>
+    
+    <select id="selectBySysRoleId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+          a.* 
+        from sys_authoritie a
+        join sys_role_authoritie_mapping ra
+        on a.auth_id = ra.auth_id
+        where ra.role_id = ${roleId}
+    </select>
+    
 </mapper>

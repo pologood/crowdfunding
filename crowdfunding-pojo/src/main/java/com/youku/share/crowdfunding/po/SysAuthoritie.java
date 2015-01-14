@@ -4,17 +4,17 @@ import java.util.List;
 
 public class SysAuthoritie extends BasePO {
 
-	private Integer authId;
+	private Long authId;
 	private String description;
 	private String url;
 
 	private List<SysRoleAuthoritieMapping> sysRoleAuthoritieMappingList;
 
-	public Integer getAuthId() {
+	public Long getAuthId() {
 		return authId;
 	}
 
-	public void setAuthId(Integer authId) {
+	public void setAuthId(Long authId) {
 		this.authId = authId;
 	}
 

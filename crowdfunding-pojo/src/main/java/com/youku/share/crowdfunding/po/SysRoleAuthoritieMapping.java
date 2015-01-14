@@ -1,31 +1,31 @@
 package com.youku.share.crowdfunding.po;
 
 public class SysRoleAuthoritieMapping extends BasePO {
-	private Integer raMappingId;
-	private Integer roleId;
-	private Integer authId;
+	private Long raMappingId;
+	private Long roleId;
+	private Long authId;
 
-	public Integer getRaMappingId() {
+	public Long getRaMappingId() {
 		return raMappingId;
 	}
 
-	public void setRaMappingId(Integer raMappingId) {
+	public void setRaMappingId(Long raMappingId) {
 		this.raMappingId = raMappingId;
 	}
 
-	public Integer getRoleId() {
+	public Long getRoleId() {
 		return roleId;
 	}
 
-	public void setRoleId(Integer roleId) {
+	public void setRoleId(Long roleId) {
 		this.roleId = roleId;
 	}
 
-	public Integer getAuthId() {
+	public Long getAuthId() {
 		return authId;
 	}
 
-	public void setAuthId(Integer authId) {
+	public void setAuthId(Long authId) {
 		this.authId = authId;
 	}
 

@@ -7,6 +7,8 @@
         <result column="user_name" property="userName" jdbcType="VARCHAR" />
         <result column="password" property="password" jdbcType="VARCHAR" />
         <result column="email" property="email" jdbcType="VARCHAR" />
+        <collection property="sysRoleList" column="user_id" ofType="SysRole" select="com.youku.share.crowdfunding.dao.SysRoleMapper.selectBySysUserId"/> 
+        <collection property="sysUserRoleMappingList" column="user_id" ofType="SysUserRoleMapping" select="com.youku.share.crowdfunding.dao.SysUserRoleMappingMapper.selectBySysUserId"/> 
     </resultMap>
     
     <sql id="BaseColumnListWithoutId">

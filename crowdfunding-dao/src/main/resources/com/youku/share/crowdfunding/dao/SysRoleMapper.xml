@@ -5,6 +5,9 @@
     <resultMap id="BaseResultMap" type="com.youku.share.crowdfunding.po.SysRole" >
         <id column="role_id" property="roleId" jdbcType="BIGINT" />
         <result column="name" property="name" jdbcType="VARCHAR" />
+        <collection property="sysAuthoritieList" column="role_id" ofType="SysAuthoritie" select="com.youku.share.crowdfunding.dao.SysAuthoritieMapper.selectBySysRoleId"/> 
+        <collection property="sysUserRoleMappingList" column="role_id" ofType="SysUserRoleMapping" select="com.youku.share.crowdfunding.dao.SysUserRoleMappingMapper.selectBySysRoleId"/>
+        <collection property="sysRoleAuthoritieMappingList" column="role_id" ofType="SysRoleAuthoritieMapping" select="com.youku.share.crowdfunding.dao.SysRoleAuthoritieMappingMapper.selectBySysRoleId"/>
     </resultMap>
     
     <sql id="BaseColumnListWithoutId">
@@ -88,4 +91,14 @@
         where 1 = 1
         <include refid="SelectiveAndPreEqListWithoutId" />
     </select>
+    
+    <select id="selectBySysUserId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+          r.* 
+        from sys_role r
+        join sys_user_role_mapping ur
+        on r.role_id = ur.role_id
+        where ur.user_id = ${userId}
+    </select>
+    
 </mapper>
