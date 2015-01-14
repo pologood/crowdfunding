@@ -146,9 +146,9 @@ $(document).ready(function(){
 
 </head>
 <body>
-YOUKU Crowdfunding</br>
+YOUKU Crowdfunding<br/>
 <!-- 
-words========<%=request.getAttribute("word")%></br>
+words========<%=request.getAttribute("word")%><br/>
 words========${word}
  -->
 <input id="id" name="id" type="hidden"/><br/>

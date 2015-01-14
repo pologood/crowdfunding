@@ -7,4 +7,9 @@ package com.youku.share.crowdfunding.util.exception;
  * */
 public class BusinessException extends BaseException{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1535457929165095468L;
+
 }

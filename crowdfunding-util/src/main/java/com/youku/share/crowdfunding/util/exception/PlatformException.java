@@ -6,6 +6,11 @@ package com.youku.share.crowdfunding.util.exception;
  * 在controller层使用
  * */
 public class PlatformException extends Exception{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3394180227584580854L;
 	
 }
  

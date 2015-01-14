@@ -3,7 +3,6 @@ package com.youku.share.crowdfunding.service.demo;
 import static junit.framework.Assert.*;
 
 import java.util.Date;
-import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.junit.After;

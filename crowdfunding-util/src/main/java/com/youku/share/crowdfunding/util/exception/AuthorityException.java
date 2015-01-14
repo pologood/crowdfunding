@@ -7,4 +7,9 @@ package com.youku.share.crowdfunding.util.exception;
  * */
 public class AuthorityException extends Exception{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6503867028057963202L;
+
 }
