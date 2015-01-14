@@ -1,4 +1,4 @@
-package com.youku.share.crowdfunding.util.exception;
+package com.youku.share.crowdfunding.exception;
 
 /*
  * 系统业务异常

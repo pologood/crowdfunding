@@ -1,4 +1,4 @@
-package com.youku.share.crowdfunding.util;
+package com.youku.share.crowdfunding.constants;
 
 public class Constants {
 	

@@ -38,20 +38,16 @@ public class UserController extends BaseController{
 	}
 	
 	@RequestMapping(value = "save")
-	public @ResponseBody String save(String name, int age, String gender, String backup,HttpServletRequest request){
-		User user = new User();
-		user.setName(name);
-		user.setAge(age);
-		user.setGender(gender);
-		user.setBackup(backup);
+	public @ResponseBody String save(User user, /*String name, int age, String gender, String backup,*/HttpServletRequest request){
+//		User user = new User();
+//		user.setName(name);
+//		user.setAge(age);
+//		user.setGender(gender);
+//		user.setBackup(backup);
 		user.setCreateTime(new Date());
 		user.setUpdateTime(new Date());
 		boolean ret = false;
-		try{
-			ret = userRegistionService.regist(user);
-		}catch(Exception e){
-			logger.info("保存用户失败", e);
-		}
+		ret = userRegistionService.regist(user);
 		return ("{\"result\":" + ret +"}");
 	}
 	

@@ -77,11 +77,11 @@ function updateUser(cellvalue){
 
 function saveUser(){
 	var user={
-            id:$("#id").val(),
-            name:$("#name").val(),
-            age:$("#age").val(),
-            gender:$("#gender").val(),
-            backup:$("#backup").val()
+	    "user.id":$("#id").val(),
+	    "user.name":$("#name").val(),
+	    "user.age":$("#age").val(),
+	    "user.gender":$("#gender").val(),
+	    "user.backup":$("#backup").val()
 	};
 	$.ajax({
 	    type: 'POST',

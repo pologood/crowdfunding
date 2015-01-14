@@ -1,4 +1,4 @@
-package com.youku.share.crowdfunding.util.exception;
+package com.youku.share.crowdfunding.exception;
 
 public class BaseException extends Exception{
 

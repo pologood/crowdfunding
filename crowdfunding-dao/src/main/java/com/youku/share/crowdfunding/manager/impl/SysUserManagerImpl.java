@@ -70,5 +70,10 @@ public class SysUserManagerImpl implements SysUserManager{
 		
 		return sysUser;
 	}
+
+	@Override
+	public SysUser find(Long id) {
+		return sysUserMapper.selectByPrimaryKey(id);
+	}
 	
 }

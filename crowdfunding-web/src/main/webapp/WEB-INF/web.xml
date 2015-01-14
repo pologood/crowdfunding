@@ -18,10 +18,65 @@
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
-			classpath:spring-service.xml
+			classpath:spring-service.xml,classpath:spring-security.xml
 		</param-value>
 	</context-param>
     <!-- ,classpath:spring-security.xml -->
+
+    <!-- 注意filter chain顺序 -->
+    <filter>
+        <filter-name>encodingFilter</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+        <init-param>
+            <param-name>forceEncoding</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>encodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <!-- 验证码图片 -->
+    <filter>
+        <filter-name>jCaptchaFilter</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+        <init-param>
+            <param-name>targetFilterLifecycle</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>jCaptchaFilter</filter-name>
+        <url-pattern>/captcha.jpg</url-pattern>
+    </filter-mapping>
+    
+	<filter>  
+	    <filter-name>exceptionFilter</filter-name>  
+	    <filter-class>com.youku.share.crowdfunding.web.filter.ExceptionFiler</filter-class>  
+	    <init-param>  
+	        <param-name>errorPage</param-name>  
+	        <param-value>/exception.jsp</param-value>  
+	    </init-param>  
+	</filter>  
+	<filter-mapping>  
+	    <filter-name>exceptionFilter</filter-name>  
+	    <url-pattern>/*</url-pattern>  
+	</filter-mapping>
+    
+    <!-- Spring Security过滤器 -->
+    <!-- filter>
+        <filter-name>springSecurityFilterChain</filter-name>   
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <url-pattern>/admin/*</url-pattern>
+    </filter-mapping-->
 
 	<servlet>
 		<servlet-name>springMvc</servlet-name>
@@ -43,33 +98,11 @@
 		<url-pattern>/static/*</url-pattern>
 	</servlet-mapping>
 
-	<filter>
-		<filter-name>encodingFilter</filter-name>
-		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
-		<init-param>
-			<param-name>encoding</param-name>
-			<param-value>UTF-8</param-value>
-		</init-param>
-		<init-param>
-			<param-name>forceEncoding</param-name>
-			<param-value>true</param-value>
-		</init-param>
-	</filter>
-	<filter-mapping>
-		<filter-name>encodingFilter</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
-
-    <!-- Spring Security过滤器 -->
-    <!-- filter>
-        <filter-name>springSecurityFilterChain</filter-name>   
-        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>springSecurityFilterChain</filter-name>
-        <url-pattern>/admin/*</url-pattern>
-    </filter-mapping-->
-
+    <!-- Session超时定义,单位为分钟 -->
+    <session-config>
+        <session-timeout>60</session-timeout>
+    </session-config>
+    
 	<welcome-file-list>
 		<welcome-file></welcome-file>
 	</welcome-file-list>

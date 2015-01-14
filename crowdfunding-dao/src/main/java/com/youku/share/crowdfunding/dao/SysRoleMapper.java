@@ -13,4 +13,5 @@ public interface SysRoleMapper {
 	List<SysRole> selectWhere(SysRole sysRole);
 	List<SysRole> selectPage(SysRole sysRole);
 	int pageCount(SysRole sysRole);
+	List<SysRole> selectAll();
 }

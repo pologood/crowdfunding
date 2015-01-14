@@ -19,35 +19,23 @@ public class UserRegistionServiceImpl implements UserRegistionService {
 	
 	@Override
 	public boolean regist(User user) {
-		try{
-			userManager.save(user);
-			//通知
-			//邮件
-			return true;
-		}catch(Exception e){
-			logger.error("========= regist fail =========",e);
-		}
-		return false;
+		logger.info("创建用户");
+		userManager.save(user);
+		logger.info("向XX系统推送用户信息");		
+		//通知
+		logger.info("发邮件通知用户注册成功");		
+		//邮件
+		return true;
 	}
 
 	@Override
 	public Page<User> page(User user) {
-		try{
-			return userManager.pageQuery(user);
-		}catch(Exception e){
-			logger.error("========= page fail =========",e);
-		}
-		return null;
+		return userManager.pageQuery(user);
 	}
 	
 	@Override
 	public boolean removeUser(Long id) {
-		try{
-			return userManager.delete(id);
-		}catch(Exception e){
-			logger.error("========= delete fail =========",e);
-		}
-		return false;
+		return userManager.delete(id);
 	}
 	
 }
