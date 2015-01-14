@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.youku.share.crowdfunding.dao.SysUserRoleMappingMapper" >
+
+    <resultMap id="BaseResultMap" type="com.youku.share.crowdfunding.po.SysUserRoleMapping" >
+        <id column="ur_mapping_id" property="urMappingId" jdbcType="BIGINT" />
+        <result column="user_id" property="userId" jdbcType="BIGINT" />
+        <result column="role_id" property="roleId" jdbcType="BIGINT" />
+    </resultMap>
+    
+    <sql id="BaseColumnListWithoutId">
+        user_id,role_id
+    </sql>
+    <sql id="BaseColumnList">
+        ur_mapping_id,
+        <include refid="BaseColumnListWithoutId" />
+    </sql>
+    <sql id="BaseValueListWithoutId">
+        #{userId,jdbcType=BIGINT},
+        #{roleId,jdbcType=BIGINT}
+    </sql>
+    <sql id="SelectiveAndPreEqListWithoutId">
+        <if test="userId != null">and user_id = #{userId,jdbcType=BIGINT}</if>
+        <if test="roleId != null">and role_id = #{roleId,jdbcType=BIGINT}</if>
+    </sql>
+    
+    <insert id="insert" parameterType="com.youku.share.crowdfunding.po.SysUserRoleMapping" useGeneratedKeys="true" keyProperty="urMappingId">
+        insert into sys_user_role_mapping (
+        <include refid="BaseColumnListWithoutId" />
+        )values(
+        <include refid="BaseValueListWithoutId" />
+        )
+    </insert>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from sys_user_role_mapping
+        where ur_mapping_id = #{urMappingId,jdbcType=BIGINT}
+    </delete>
+    <select id="selectWhere" resultMap="BaseResultMap">
+        select
+        <include refid="BaseColumnList" />
+        from sys_user_role_mapping
+        where 1 = 1
+        <include refid="SelectiveAndPreEqListWithoutId" />
+    </select>
+    
+</mapper>

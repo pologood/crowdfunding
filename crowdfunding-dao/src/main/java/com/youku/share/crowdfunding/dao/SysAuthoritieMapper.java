@@ -2,15 +2,15 @@ package com.youku.share.crowdfunding.dao;
 
 import java.util.List;
 
-import com.youku.share.crowdfunding.po.SysUser;
+import com.youku.share.crowdfunding.po.SysAuthoritie;
 
 public interface SysAuthoritieMapper {
-	SysUser selectByPrimaryKey(Long id);
-	int insert(SysUser sysUser);
-	int insertSelective(SysUser sysUser);
-	int updateByPrimaryKeySelective(SysUser sysUser);
+	SysAuthoritie selectByPrimaryKey(Long id);
+	int insert(SysAuthoritie sysAuthoritie);
+	int insertSelective(SysAuthoritie sysAuthoritie);
+	int updateByPrimaryKeySelective(SysAuthoritie sysAuthoritie);
 	int deleteByPrimaryKey(Long id);
-	List<SysUser> selectWhere(SysUser sysUser);
-	List<SysUser> selectPage(SysUser sysUser);
-	int pageCount(SysUser sysUser);
+	List<SysAuthoritie> selectWhere(SysAuthoritie sysAuthoritie);
+	List<SysAuthoritie> selectPage(SysAuthoritie sysAuthoritie);
+	int pageCount(SysAuthoritie sysAuthoritie);
 }

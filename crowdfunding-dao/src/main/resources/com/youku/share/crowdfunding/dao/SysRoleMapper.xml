@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.youku.share.crowdfunding.dao.SysRoleMapper" >
+
+    <resultMap id="BaseResultMap" type="com.youku.share.crowdfunding.po.SysRole" >
+        <id column="role_id" property="roleId" jdbcType="BIGINT" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+    </resultMap>
+    
+    <sql id="BaseColumnListWithoutId">
+        name
+    </sql>
+    <sql id="BaseColumnList">
+        role_id,
+        <include refid="BaseColumnListWithoutId" />
+    </sql>
+    <sql id="SelectiveColumnListWithoutId">
+        <if test="name != null">name,</if>
+    </sql>
+    <sql id="BaseValueListWithoutId">
+        #{name,jdbcType=VARCHAR}
+    </sql>
+    <sql id="SelectiveValueListWithoutId">
+        <if test="name != null">#{name,jdbcType=VARCHAR},</if>
+    </sql>
+    <sql id="BaseEqListWithoutId">
+        name = #{name,jdbcType=VARCHAR}
+    </sql>
+    <sql id="SelectiveEqListWithoutId">
+        <if test="name != null">name = #{name,jdbcType=VARCHAR},</if>
+    </sql>
+    <sql id="SelectiveAndPreEqListWithoutId">
+        <if test="name != null">and name = #{name,jdbcType=VARCHAR}</if>
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap"
+        parameterType="java.lang.Long">
+        select
+        <include refid="BaseColumnList" />
+        from sys_role
+        where role_id = #{roleId,jdbcType=BIGINT}
+    </select>
+    <insert id="insert" parameterType="com.youku.share.crowdfunding.po.SysRole" useGeneratedKeys="true" keyProperty="roleId">
+        insert into sys_role (
+        <include refid="BaseColumnListWithoutId" />
+        )values(
+        <include refid="BaseValueListWithoutId" />
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="com.youku.share.crowdfunding.po.SysRole" useGeneratedKeys="true" keyProperty="roleId">
+        insert into sys_role
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <include refid="SelectiveColumnListWithoutId" />
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <include refid="SelectiveValueListWithoutId" />
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.youku.share.crowdfunding.po.SysRole">
+        update sys_role
+        <trim prefix="SET" suffixOverrides=",">
+            <include refid="SelectiveEqListWithoutId" />
+        </trim>
+        where role_id = #{roleId,jdbcType=BIGINT}
+    </update>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from sys_role
+        where role_id = #{roleId,jdbcType=BIGINT}
+    </delete>
+    <select id="selectWhere" resultMap="BaseResultMap">
+        select
+        <include refid="BaseColumnList" />
+        from sys_role
+        where 1 = 1
+        <include refid="SelectiveAndPreEqListWithoutId" />
+    </select>
+    <select id="selectPage" resultMap="BaseResultMap">
+        select
+        <include refid="BaseColumnList" />
+        from sys_role
+        where 1 = 1
+        <include refid="SelectiveAndPreEqListWithoutId" />
+        order by ${order_} ${sort_}
+        limit ${limitStart_}, ${limitSize_}
+    </select>
+    <select id="pageCount" resultType="int">
+        select count(1)
+        from sys_role
+        where 1 = 1
+        <include refid="SelectiveAndPreEqListWithoutId" />
+    </select>
+</mapper>

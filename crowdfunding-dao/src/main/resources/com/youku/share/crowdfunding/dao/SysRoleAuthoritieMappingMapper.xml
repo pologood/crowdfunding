@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.youku.share.crowdfunding.dao.SysRoleAuthoritieMappingMapper" >
+
+    <resultMap id="BaseResultMap" type="com.youku.share.crowdfunding.po.SysRoleAuthoritieMapping" >
+        <id column="ra_mapping_id" property="raMappingId" jdbcType="BIGINT" />
+        <result column="role_id" property="roleId" jdbcType="BIGINT" />
+        <result column="auth_id" property="authId" jdbcType="BIGINT" />
+    </resultMap>
+    
+    <sql id="BaseColumnListWithoutId">
+        role_id,auth_id
+    </sql>
+    <sql id="BaseColumnList">
+        ra_mapping_id,
+        <include refid="BaseColumnListWithoutId" />
+    </sql>
+    <sql id="BaseValueListWithoutId">
+        #{roleId,jdbcType=BIGINT}
+        #{authId,jdbcType=BIGINT},
+    </sql>
+    <sql id="SelectiveAndPreEqListWithoutId">
+        <if test="roleId != null">and role_id = #{roleId,jdbcType=BIGINT}</if>
+        <if test="authId != null">and auth_id = #{authId,jdbcType=BIGINT}</if>
+    </sql>
+    
+    <insert id="insert" parameterType="com.youku.share.crowdfunding.po.SysRoleAuthoritieMapping" useGeneratedKeys="true" keyProperty="raMappingId">
+        insert into sys_role_authoritie_mapping (
+        <include refid="BaseColumnListWithoutId" />
+        )values(
+        <include refid="BaseValueListWithoutId" />
+        )
+    </insert>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from sys_role_authoritie_mapping
+        where ra_mapping_id = #{raMappingId,jdbcType=BIGINT}
+    </delete>
+    <select id="selectWhere" resultMap="BaseResultMap">
+        select
+        <include refid="BaseColumnList" />
+        from sys_role_authoritie_mapping
+        where 1 = 1
+        <include refid="SelectiveAndPreEqListWithoutId" />
+    </select>
+    
+</mapper>

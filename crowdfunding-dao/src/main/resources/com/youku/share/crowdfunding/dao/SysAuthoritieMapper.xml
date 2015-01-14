@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.youku.share.crowdfunding.dao.SysAuthoritieMapper" >
+
+    <resultMap id="BaseResultMap" type="com.youku.share.crowdfunding.po.SysAuthoritie" >
+        <id column="auth_id" property="authId" jdbcType="BIGINT" />
+        <result column="description" property="description" jdbcType="VARCHAR" />
+        <result column="url" property="url" jdbcType="VARCHAR" />
+    </resultMap>
+    
+    <sql id="BaseColumnListWithoutId">
+        description, url
+    </sql>
+    <sql id="BaseColumnList">
+        auth_id,
+        <include refid="BaseColumnListWithoutId" />
+    </sql>
+    <sql id="SelectiveColumnListWithoutId">
+        <if test="description != null">description,</if>
+        <if test="url != null">url,</if>
+    </sql>
+    <sql id="BaseValueListWithoutId">
+        #{description,jdbcType=VARCHAR},
+        #{url,jdbcType=VARCHAR}
+    </sql>
+    <sql id="SelectiveValueListWithoutId">
+        <if test="description != null">#{description,jdbcType=VARCHAR},</if>
+        <if test="url != null">#{url,jdbcType=VARCHAR},</if>
+    </sql>
+    <sql id="BaseEqListWithoutId">
+        description = #{description,jdbcType=VARCHAR},
+        url = #{url,jdbcType=VARCHAR}
+    </sql>
+    <sql id="SelectiveEqListWithoutId">
+        <if test="description != null">description = #{description,jdbcType=VARCHAR},</if>
+        <if test="url != null">url = #{url,jdbcType=VARCHAR},</if>
+    </sql>
+    <sql id="SelectiveAndPreEqListWithoutId">
+        <if test="description != null">and description = #{description,jdbcType=VARCHAR}</if>
+        <if test="url != null">and url = #{url,jdbcType=VARCHAR}</if>
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap"
+        parameterType="java.lang.Long">
+        select
+        <include refid="BaseColumnList" />
+        from sys_authoritie
+        where auth_id = #{authId,jdbcType=BIGINT}
+    </select>
+    <insert id="insert" parameterType="com.youku.share.crowdfunding.po.SysAuthoritie" useGeneratedKeys="true" keyProperty="authId">
+        insert into sys_authoritie (
+        <include refid="BaseColumnListWithoutId" />
+        )values(
+        <include refid="BaseValueListWithoutId" />
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="com.youku.share.crowdfunding.po.SysAuthoritie" useGeneratedKeys="true" keyProperty="authId">
+        insert into sys_authoritie
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <include refid="SelectiveColumnListWithoutId" />
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <include refid="SelectiveValueListWithoutId" />
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.youku.share.crowdfunding.po.SysAuthoritie">
+        update sys_authoritie
+        <trim prefix="SET" suffixOverrides=",">
+            <include refid="SelectiveEqListWithoutId" />
+        </trim>
+        where auth_id = #{authId,jdbcType=BIGINT}
+    </update>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from sys_authoritie
+        where auth_id = #{authId,jdbcType=BIGINT}
+    </delete>
+    <select id="selectWhere" resultMap="BaseResultMap">
+        select
+        <include refid="BaseColumnList" />
+        from sys_authoritie
+        where 1 = 1
+        <include refid="SelectiveAndPreEqListWithoutId" />
+    </select>
+    <select id="selectPage" resultMap="BaseResultMap">
+        select
+        <include refid="BaseColumnList" />
+        from sys_authoritie
+        where 1 = 1
+        <include refid="SelectiveAndPreEqListWithoutId" />
+        order by ${order_} ${sort_}
+        limit ${limitStart_}, ${limitSize_}
+    </select>
+    <select id="pageCount" resultType="int">
+        select count(1)
+        from sys_authoritie
+        where 1 = 1
+        <include refid="SelectiveAndPreEqListWithoutId" />
+    </select>
+</mapper>
