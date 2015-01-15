@@ -6,6 +6,6 @@ import com.youku.share.crowdfunding.po.SysRoleAuthoritieMapping;
 
 public interface SysRoleAuthoritieMappingMapper {
 	int insert(SysRoleAuthoritieMapping sysRoleAuthoritieMapping);
-	int deleteByPrimaryKey(Long id);
+	int deleteByPrimaryKey(Long raMappingId);
 	List<SysRoleAuthoritieMapping> selectWhere(SysRoleAuthoritieMapping sysRoleAuthoritieMapping);
 }

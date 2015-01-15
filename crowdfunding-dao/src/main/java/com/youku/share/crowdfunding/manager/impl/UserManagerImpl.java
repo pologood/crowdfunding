@@ -11,6 +11,12 @@ import com.youku.share.crowdfunding.po.User;
 import com.youku.share.crowdfunding.dao.UserMapper;
 import com.youku.share.crowdfunding.manager.UserManager;
 
+/*
+ * Manager层要保持debug级别的日志
+ * 
+ * 
+ */
+
 @Component
 public class UserManagerImpl implements UserManager{
 	

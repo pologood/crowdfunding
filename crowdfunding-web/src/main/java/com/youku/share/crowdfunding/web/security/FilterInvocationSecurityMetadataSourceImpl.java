@@ -15,7 +15,7 @@ import org.springframework.security.web.access.intercept.FilterInvocationSecurit
 
 import com.youku.share.crowdfunding.po.SysAuthoritie;
 import com.youku.share.crowdfunding.po.SysRole;
-import com.youku.share.crowdfunding.service.demo.SysRoleService;
+import com.youku.share.crowdfunding.service.security.SysRoleService;
 
 public class FilterInvocationSecurityMetadataSourceImpl implements FilterInvocationSecurityMetadataSource {
 

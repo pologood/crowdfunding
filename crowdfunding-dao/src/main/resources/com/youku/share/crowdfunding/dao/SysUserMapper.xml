@@ -53,7 +53,7 @@
         select
         <include refid="BaseColumnList" />
         from sys_user
-        where user_id = #{userId,jdbcType=BIGINT}
+        where user_id = ${userId,jdbcType=BIGINT}
     </select>
     <insert id="insert" parameterType="com.youku.share.crowdfunding.po.SysUser" useGeneratedKeys="true" keyProperty="userId">
         insert into sys_user (
@@ -80,7 +80,7 @@
     </update>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
         delete from sys_user
-        where user_id = #{userId,jdbcType=BIGINT}
+        where user_id = ${userId,jdbcType=BIGINT}
     </delete>
     <select id="selectWhere" resultMap="BaseResultMap">
         select

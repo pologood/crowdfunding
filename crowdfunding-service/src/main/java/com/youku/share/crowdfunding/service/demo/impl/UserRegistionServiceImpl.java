@@ -19,11 +19,11 @@ public class UserRegistionServiceImpl implements UserRegistionService {
 	
 	@Override
 	public boolean regist(User user) {
-		logger.info("创建用户");
+		logger.info("创建用户" + user.getName());
 		userManager.save(user);
 		logger.info("向XX系统推送用户信息");		
 		//通知
-		logger.info("发邮件通知用户注册成功");		
+		logger.info("发邮件通知用户注册成功");
 		//邮件
 		return true;
 	}

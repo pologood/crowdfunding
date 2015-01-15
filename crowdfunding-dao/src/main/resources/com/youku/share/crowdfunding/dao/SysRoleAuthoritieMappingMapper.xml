@@ -33,7 +33,7 @@
     </insert>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
         delete from sys_role_authoritie_mapping
-        where ra_mapping_id = #{raMappingId,jdbcType=BIGINT}
+        where ra_mapping_id = ${raMappingId,jdbcType=BIGINT}
     </delete>
     <select id="selectWhere" resultMap="BaseResultMap">
         select

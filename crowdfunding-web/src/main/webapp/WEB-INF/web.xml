@@ -18,10 +18,30 @@
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
-			classpath:spring-service.xml,classpath:spring-security.xml
+			classpath:spring-service.xml
 		</param-value>
 	</context-param>
     <!-- ,classpath:spring-security.xml -->
+
+    <servlet>
+        <servlet-name>springMvc</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:spring-mvc.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+        <async-supported>true</async-supported>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>springMvc</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>/static/*</url-pattern>
+    </servlet-mapping>
 
     <!-- 注意filter chain顺序 -->
     <filter>
@@ -40,24 +60,10 @@
         <filter-name>encodingFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-
-    <!-- 验证码图片 -->
-    <filter>
-        <filter-name>jCaptchaFilter</filter-name>
-        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
-        <init-param>
-            <param-name>targetFilterLifecycle</param-name>
-            <param-value>true</param-value>
-        </init-param>
-    </filter>
-    <filter-mapping>
-        <filter-name>jCaptchaFilter</filter-name>
-        <url-pattern>/captcha.jpg</url-pattern>
-    </filter-mapping>
     
 	<filter>  
 	    <filter-name>exceptionFilter</filter-name>  
-	    <filter-class>com.youku.share.crowdfunding.web.filter.ExceptionFiler</filter-class>  
+	    <filter-class>com.youku.share.crowdfunding.web.filter.ExceptionFilter</filter-class>  
 	    <init-param>  
 	        <param-name>errorPage</param-name>  
 	        <param-value>/exception.jsp</param-value>  
@@ -68,6 +74,20 @@
 	    <url-pattern>/*</url-pattern>  
 	</filter-mapping>
     
+    <!-- 验证码图片 -->
+    <!-- filter>
+        <filter-name>jCaptchaFilter</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+        <init-param>
+            <param-name>targetFilterLifecycle</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>jCaptchaFilter</filter-name>
+        <url-pattern>/captcha.jpg</url-pattern>
+    </filter-mapping-->
+    
     <!-- Spring Security过滤器 -->
     <!-- filter>
         <filter-name>springSecurityFilterChain</filter-name>   
@@ -77,26 +97,6 @@
         <filter-name>springSecurityFilterChain</filter-name>
         <url-pattern>/admin/*</url-pattern>
     </filter-mapping-->
-
-	<servlet>
-		<servlet-name>springMvc</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<init-param>
-			<param-name>contextConfigLocation</param-name>
-			<param-value>classpath:spring-mvc.xml</param-value>
-		</init-param>
-		<load-on-startup>1</load-on-startup>
-		<async-supported>true</async-supported>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>springMvc</servlet-name>
-		<url-pattern>/</url-pattern>
-	</servlet-mapping>
-
-	<servlet-mapping>
-		<servlet-name>default</servlet-name>
-		<url-pattern>/static/*</url-pattern>
-	</servlet-mapping>
 
     <!-- Session超时定义,单位为分钟 -->
     <session-config>

@@ -4,6 +4,8 @@ import org.apache.log4j.Logger;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.access.AccessDeniedHandler;
 
+import com.youku.share.crowdfunding.util.Utils;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -48,11 +50,9 @@ public class AccessDeniedHandlerImpl implements AccessDeniedHandler {
 	}
 
 	public boolean isAjaxRequest(HttpServletRequest request) {
-		String requestURI = request.getRequestURI();
-		String requestHeader = request.getHeader("X-Requested-With");
-		logger.info("requestURI="+requestURI);
-		logger.info("requestHeader="+requestHeader);
-		return "XMLHttpRequest".equals(requestHeader);
+		boolean isAjaxRequest = Utils.isAjaxRequest(request);
+		logger.info("isAjaxRequest=" + isAjaxRequest);
+		return isAjaxRequest;
 	}
 
 	public String getAccessDeniedUrl() {

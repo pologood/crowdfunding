@@ -45,7 +45,7 @@
         select
         <include refid="BaseColumnList" />
         from sys_authoritie
-        where auth_id = #{authId,jdbcType=BIGINT}
+        where auth_id = ${authId,jdbcType=BIGINT}
     </select>
     <insert id="insert" parameterType="com.youku.share.crowdfunding.po.SysAuthoritie" useGeneratedKeys="true" keyProperty="authId">
         insert into sys_authoritie (
@@ -72,7 +72,7 @@
     </update>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
         delete from sys_authoritie
-        where auth_id = #{authId,jdbcType=BIGINT}
+        where auth_id = ${authId,jdbcType=BIGINT}
     </delete>
     <select id="selectWhere" resultMap="BaseResultMap">
         select

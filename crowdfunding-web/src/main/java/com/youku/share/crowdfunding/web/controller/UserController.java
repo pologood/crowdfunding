@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -30,24 +31,26 @@ public class UserController extends BaseController{
 		binder.setFieldDefaultPrefix("user.");    
 	}
 	
-	@RequestMapping(value = "list")
+	@RequestMapping(value = "/list")
 	public @ResponseBody Page<User> list(User user, HttpServletRequest request){
 		logger.info("========================");
 		Page<User> page = userRegistionService.page(user);
 		return page;
 	}
 	
-	@RequestMapping(value = "save")
-	public @ResponseBody String save(User user, /*String name, int age, String gender, String backup,*/HttpServletRequest request){
-//		User user = new User();
+	@RequestMapping(value = "/save")
+	public @ResponseBody String save(@RequestBody String body, /*User user, String name, int age, String gender, String backup,*/HttpServletRequest request){
+		logger.info("body = " + body);
+		
+		//		User user = new User();
 //		user.setName(name);
 //		user.setAge(age);
 //		user.setGender(gender);
 //		user.setBackup(backup);
-		user.setCreateTime(new Date());
-		user.setUpdateTime(new Date());
+//		user.setCreateTime(new Date());
+//		user.setUpdateTime(new Date());
 		boolean ret = false;
-		ret = userRegistionService.regist(user);
+//		ret = userRegistionService.regist(user);
 		return ("{\"result\":" + ret +"}");
 	}
 	
@@ -55,11 +58,8 @@ public class UserController extends BaseController{
 	public @ResponseBody String delete(Long id,HttpServletRequest request){
 
 		boolean ret = false;
-		try{
-			ret = userRegistionService.removeUser(id);
-		}catch(Exception e){
-			logger.info("保存用户失败", e);
-		}
+		ret = userRegistionService.removeUser(id);
 		return ("{\"result\":" + ret +"}");
 	}
+	
 }

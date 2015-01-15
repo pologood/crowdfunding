@@ -12,6 +12,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.youku.share.crowdfunding.exception.AuthorityException;
+import com.youku.share.crowdfunding.exception.BusinessException;
+import com.youku.share.crowdfunding.exception.PlatformException;
 import com.youku.share.crowdfunding.po.User;
 import com.youku.share.crowdfunding.service.demo.UserRegistionService;
 
@@ -25,7 +28,7 @@ public class IndexController extends BaseController{
 	private UserRegistionService userRegistionService;
 	
 	@RequestMapping(value = "welcome")
-	public ModelAndView welcome(String word,HttpServletRequest request){
+	public ModelAndView welcome(String word, HttpServletRequest request){
 		logger.info("word==========="+word);
 		Map<String,Object> rootMap = new HashMap<String, Object>();
 		User user = new User();
@@ -36,6 +39,22 @@ public class IndexController extends BaseController{
 		user.setCreateTime(new Date());
 		user.setUpdateTime(new Date());
 		//rootMap.put("word", word + " regist success ? " + userRegistionService.regist(user));
+		return new ModelAndView("index",rootMap);
+	}
+	
+	@RequestMapping(value = "test")
+	public ModelAndView test(String word, HttpServletRequest request) throws Exception{
+		logger.info("word==========="+word);
+		Map<String,Object> rootMap = new HashMap<String, Object>();
+		if("AuthorityException".equals(word)){
+			throw new AuthorityException();
+		}
+		if("BusinessException".equals(word)){
+			throw new BusinessException();
+		}
+		if("PlatformException".equals(word)){
+			throw new PlatformException();
+		}
 		return new ModelAndView("index",rootMap);
 	}
 	
