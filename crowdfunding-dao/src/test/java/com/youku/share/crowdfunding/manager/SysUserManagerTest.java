@@ -63,9 +63,9 @@ public class SysUserManagerTest {
 			assertNotNull(intf);
 			User user = new User();
 			user.setName("benson");
-			user.setAge(30);
-			user.setGender("male");
-			user.setBackup("benson sefarious");
+			//user.setAge(30);
+			//user.setGender("male");
+			//user.setBackup("benson sefarious");
 			user.setOrder_("id");
 			user.setSort_("asc");
 			user.setPageNum_(1);
