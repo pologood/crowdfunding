@@ -42,8 +42,8 @@ public class SysRoleManagerImpl implements SysRoleManager{
 	}
 	
 	@Transactional
-	public boolean delete(Long id){
-		SysRole oldSysRole = sysRoleMapper.selectByPrimaryKey(id);
+	public boolean delete(Long roleId){
+		SysRole oldSysRole = sysRoleMapper.selectByPrimaryKey(roleId);
 		List<SysUserRoleMapping> oldSysUserRoleMappingList = oldSysRole.getSysUserRoleMappingList();
 		if(oldSysUserRoleMappingList != null && oldSysUserRoleMappingList.size() > 0){
 			for(SysUserRoleMapping sysRoleRoleMapping : oldSysUserRoleMappingList){
@@ -56,7 +56,7 @@ public class SysRoleManagerImpl implements SysRoleManager{
 				sysRoleAuthoritieMappingMapper.deleteByPrimaryKey(sysRoleAuthoritieMapping.getRaMappingId());
 			}
 		}
-		return sysRoleMapper.deleteByPrimaryKey(id) > 0;
+		return sysRoleMapper.deleteByPrimaryKey(roleId) > 0;
 	}
 
 	@Transactional

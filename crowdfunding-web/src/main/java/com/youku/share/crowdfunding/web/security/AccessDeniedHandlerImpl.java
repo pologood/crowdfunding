@@ -1,6 +1,7 @@
 package com.youku.share.crowdfunding.web.security;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.access.AccessDeniedHandler;
 
@@ -14,7 +15,7 @@ import java.io.IOException;
 
 public class AccessDeniedHandlerImpl implements AccessDeniedHandler {
 	
-	private static final Logger logger = Logger.getLogger(AccessDeniedHandlerImpl.class);
+	private static final Logger logger = LogManager.getLogger(AccessDeniedHandlerImpl.class);
 	
 	private static String ACCESS_DENIED_MSG = "message";
 	private String accessDeniedUrl;

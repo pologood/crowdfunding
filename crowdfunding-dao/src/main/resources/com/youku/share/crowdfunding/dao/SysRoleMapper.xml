@@ -40,7 +40,7 @@
         select
         <include refid="BaseColumnList" />
         from sys_role
-        where role_id = #{roleId}
+        where role_id = #{roleId,jdbcType=BIGINT}
     </select>
     <insert id="insert" parameterType="com.youku.share.crowdfunding.po.SysRole" useGeneratedKeys="true" keyProperty="roleId">
         insert into sys_role (
@@ -67,7 +67,7 @@
     </update>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
         delete from sys_role
-        where role_id = ${roleId,jdbcType=BIGINT}
+        where role_id = #{roleId,jdbcType=BIGINT}
     </delete>
     <select id="selectWhere" resultMap="BaseResultMap">
         select
@@ -98,7 +98,7 @@
         from sys_role r
         join sys_user_role_mapping ur
         on r.role_id = ur.role_id
-        where ur.user_id = ${userId}
+        where ur.user_id = #{userId,jdbcType=BIGINT}
     </select>
     
     <select id="selectAll" resultMap="BaseResultMap">

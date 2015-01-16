@@ -6,7 +6,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.ConfigAttribute;
 import org.springframework.security.access.SecurityConfig;
@@ -19,7 +20,7 @@ import com.youku.share.crowdfunding.service.security.SysRoleService;
 
 public class FilterInvocationSecurityMetadataSourceImpl implements FilterInvocationSecurityMetadataSource {
 
-	private static final Logger logger = Logger.getLogger(FilterInvocationSecurityMetadataSourceImpl.class);
+	private static final Logger logger = LogManager.getLogger(FilterInvocationSecurityMetadataSourceImpl.class);
 	
 	/*
 	 * key = Authoritie.url

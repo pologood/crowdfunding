@@ -2,14 +2,15 @@ package com.youku.share.crowdfunding.util;
 
 import static junit.framework.Assert.assertNotNull;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 public class UtilsTest{
 
-	private static final Logger logger = Logger.getLogger(UtilsTest.class);
+	private static final Logger logger = LogManager.getLogger(UtilsTest.class);
 	
 	//private ApplicationContext ctx = null;	
 

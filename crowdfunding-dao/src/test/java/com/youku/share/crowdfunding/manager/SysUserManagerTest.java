@@ -5,7 +5,8 @@ import static junit.framework.Assert.*;
 import java.util.Date;
 import java.util.List;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,7 +18,7 @@ import com.youku.share.crowdfunding.po.User;
 
 public class SysUserManagerTest {
 	
-	private static final Logger logger = Logger.getLogger(SysUserManagerTest.class);
+	private static final Logger logger = LogManager.getLogger(SysUserManagerTest.class);
 
 	private ApplicationContext ctx = null;
 	

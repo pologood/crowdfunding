@@ -23,6 +23,10 @@ public class UserManagerImpl implements UserManager{
 	@Autowired
 	private UserMapper userMapper;
 	
+	public User get(Long id){
+		return userMapper.selectByPrimaryKey(id);
+	}
+	
 	@Transactional
 	public User save(User user){
 		userMapper.insertSelective(user);

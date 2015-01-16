@@ -33,7 +33,7 @@
     </insert>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
         delete from sys_user_role_mapping
-        where ur_mapping_id = ${urMappingId,jdbcType=BIGINT}
+        where ur_mapping_id = #{urMappingId,jdbcType=BIGINT}
     </delete>
     <select id="selectWhere" resultMap="BaseResultMap">
         select
@@ -47,14 +47,14 @@
         select
         <include refid="BaseColumnList" />
         from sys_user_role_mapping
-        where user_id = ${userId}
+        where user_id = #{userId,jdbcType=BIGINT}
     </select>
     
     <select id="selectBySysRoleId" parameterType="java.lang.Long" resultMap="BaseResultMap">
         select
         <include refid="BaseColumnList" />
         from sys_user_role_mapping
-        where role_id = ${roleId}
+        where role_id = #{roleId,jdbcType=BIGINT}
     </select>
     
 </mapper>

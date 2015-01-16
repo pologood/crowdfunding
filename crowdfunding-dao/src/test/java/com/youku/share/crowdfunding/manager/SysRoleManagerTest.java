@@ -2,7 +2,10 @@ package com.youku.share.crowdfunding.manager;
 
 import static junit.framework.Assert.*;
 
-import org.apache.log4j.Logger;
+import java.util.List;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,7 +17,7 @@ import com.youku.share.crowdfunding.po.SysRole;
 
 public class SysRoleManagerTest {
 	
-	private static final Logger logger = Logger.getLogger(SysRoleManagerTest.class);
+	private static final Logger logger = LogManager.getLogger(SysRoleManagerTest.class);
 
 	private ApplicationContext ctx = null;
 	
@@ -30,9 +33,16 @@ public class SysRoleManagerTest {
 
 	@Test
 	public void testSysRoleManager() throws Exception {
-		logger.info("SysRoleManagerTest.testSysRoleManager");
-		SysRole sysRole = sysRoleManager.find(2L);
-		assertNotNull(sysRole);
+		logger.info("SysRoleManagerTest.testSysRoleManager start");
+		try{
+			List<SysRole> sysRoleList = sysRoleManager.getAll();
+			SysRole sysRole = sysRoleManager.find(new Long(2L));
+			assertNotNull(sysRole);
+			assertNotNull(sysRoleList);
+			logger.info("SysRoleManagerTest.testSysRoleManager ok");
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 	
 	@After

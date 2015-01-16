@@ -7,13 +7,13 @@ import com.youku.share.crowdfunding.po.SysRole;
 
 public interface SysRoleManager {
 
-	SysRole find(Long id);
+	SysRole find(Long roleId);
 	
 	SysRole save(SysRole sysRole);
     
     Page<SysRole> pageQuery(SysRole sysRole);
     
-    boolean delete(Long id);
+    boolean delete(Long roleId);
     
     SysRole update(SysRole sysRole);
     

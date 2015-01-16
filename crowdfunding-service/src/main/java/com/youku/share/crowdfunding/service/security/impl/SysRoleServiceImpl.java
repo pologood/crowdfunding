@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.youku.share.crowdfunding.exception.BusinessException;
 import com.youku.share.crowdfunding.manager.SysRoleManager;
 import com.youku.share.crowdfunding.page.Page;
 import com.youku.share.crowdfunding.po.SysRole;
@@ -28,13 +27,7 @@ public class SysRoleServiceImpl implements SysRoleService{
 	}
 	
 	@Override
-	public SysRole update(SysRole sysRole) throws BusinessException{
-		if(sysRole.getSysAuthoritieList().size() > 3){
-			
-			throw new BusinessException("errCode","单个资源角色不能超过三个");
-		}
-		
-		
+	public SysRole update(SysRole sysRole){
 		return sysRoleManager.update(sysRole);
 	}
 

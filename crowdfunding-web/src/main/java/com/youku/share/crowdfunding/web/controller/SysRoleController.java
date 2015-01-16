@@ -5,7 +5,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
@@ -21,7 +22,7 @@ import com.youku.share.crowdfunding.service.security.SysRoleService;
 @RequestMapping("/sysrole")
 public class SysRoleController extends BaseController{
 	
-	private static final Logger logger = Logger.getLogger(SysRoleController.class);
+	private static final Logger logger = LogManager.getLogger(SysRoleController.class);
 	
 	@Autowired
 	private SysRoleService sysRoleService;

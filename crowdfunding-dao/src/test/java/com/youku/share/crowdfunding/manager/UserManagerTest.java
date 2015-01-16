@@ -5,7 +5,8 @@ import static junit.framework.Assert.*;
 import java.util.Date;
 import java.util.List;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,14 +18,16 @@ import com.youku.share.crowdfunding.po.User;
 
 public class UserManagerTest {
 	
-	private static final Logger logger = Logger.getLogger(UserManagerTest.class);
+	private static final Logger logger = LogManager.getLogger(UserManagerTest.class);
 
 	private ApplicationContext ctx = null;
+	UserManager intf = null;
 	
 	@Before
 	public void init() throws Exception {
 		ctx = //new ClassPathXmlApplicationContext("classpath:spring.xml");
 		      new ClassPathXmlApplicationContext(new String[]{"classpath:spring-dao.xml"});
+		intf = ctx.getBean(UserManager.class);
 	}
 
 	@Test
@@ -39,7 +42,6 @@ public class UserManagerTest {
 			//assertNotNull(userManager);
 			//Object impl = ctx.getBean(UserManagerImpl.class);
 			//assertNotNull(impl);
-			UserManager intf = ctx.getBean(UserManager.class);
 			assertNotNull(intf);
 			User user = new User();
 			user.setName("benson");
@@ -58,7 +60,6 @@ public class UserManagerTest {
 	@Test
 	public void testUserManagerSelectPage() throws Exception {
 		try{
-			UserManager intf = ctx.getBean(UserManager.class);
 			assertNotNull(intf);
 			User user = new User();
 			user.setName("benson");
@@ -77,6 +78,12 @@ public class UserManagerTest {
 		}catch(Throwable e){
 			logger.error("testUserManager ------------> ", e);
 		}
+	}
+	
+	@Test
+	public void testDeleteUser() throws Exception {
+		intf.delete(145L);
+		assertNotNull(intf.get(10L));
 	}
 	
 	@After

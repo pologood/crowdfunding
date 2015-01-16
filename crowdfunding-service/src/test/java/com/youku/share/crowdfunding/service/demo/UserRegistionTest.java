@@ -4,7 +4,8 @@ import static junit.framework.Assert.*;
 
 import java.util.Date;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,7 +16,7 @@ import com.youku.share.crowdfunding.page.Page;
 import com.youku.share.crowdfunding.po.User;
 
 public class UserRegistionTest {
-	private static final Logger logger = Logger.getLogger(UserRegistionTest.class);
+	private static final Logger logger = LogManager.getLogger(UserRegistionTest.class);
 	
 	private ApplicationContext ctx = null;	
 	

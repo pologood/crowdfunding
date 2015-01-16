@@ -1,6 +1,8 @@
 package com.youku.share.crowdfunding.service.demo.impl;
 
-import org.apache.log4j.Logger;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -12,7 +14,7 @@ import com.youku.share.crowdfunding.service.demo.UserRegistionService;
 @Component
 public class UserRegistionServiceImpl implements UserRegistionService {
 
-	private static final Logger logger = Logger.getLogger(UserRegistionServiceImpl.class);
+	private static final Logger logger = LogManager.getLogger(UserRegistionServiceImpl.class);
 	
 	@Autowired
 	private UserManager userManager;

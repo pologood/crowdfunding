@@ -12,14 +12,15 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.youku.share.crowdfunding.exception.BaseException;
 import com.youku.share.crowdfunding.util.Utils;
 
 public class ExceptionFilter implements Filter {
 
-	private static final Logger logger = Logger.getLogger(ExceptionFilter.class);
+	private static final Logger logger = LogManager.getLogger(ExceptionFilter.class);
 	
 	private String errorPage;// 跳转的错误信息页面
 
@@ -77,16 +78,12 @@ public class ExceptionFilter implements Filter {
 				request.getRequestDispatcher(errorPage).forward(request,
 						response);// 跳转到信息提示页面！！
 			}else{
-				PlatformExcepton
+				
 				request.setAttribute("OtherException", t);// 存储业务异常信息类
 				request.getRequestDispatcher(errorPage).forward(request,
 						response);// 跳转到信息提示页面！！
 			}
 		}
-	}
-	
-	private String getTipPage(BusinessException be){
-		return null;
 	}
 	
 	private void ajaxHandle(HttpServletRequest request,HttpServletResponse response,Throwable t) throws IOException{

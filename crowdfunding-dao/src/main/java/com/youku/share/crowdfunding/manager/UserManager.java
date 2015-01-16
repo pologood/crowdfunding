@@ -5,6 +5,8 @@ import com.youku.share.crowdfunding.po.User;
 
 public interface UserManager {
 
+	User get(Long id);
+	
 	User save(User user);
     
     Page<User> pageQuery(User user);
