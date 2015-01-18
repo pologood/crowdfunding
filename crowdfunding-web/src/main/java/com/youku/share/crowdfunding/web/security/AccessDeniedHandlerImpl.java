@@ -54,6 +54,7 @@ public class AccessDeniedHandlerImpl implements AccessDeniedHandler {
 		
 		if (Utils.isAjaxRequest(request)) {
 			logger.error("ajax deny unimplements !");
+			Utils.ajaxResponse(request, response, "{\"result\":false,\"message\":\"无权限\"}");
 		} else {
 			String deniedMessage = accessDeniedException.getMessage();
 			request.getSession().setAttribute(ACCESS_DENIED_MSG, deniedMessage);

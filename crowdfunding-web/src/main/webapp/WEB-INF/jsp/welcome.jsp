@@ -139,6 +139,11 @@ $(document).ready(function(){
             records: "records", // json中代表数据行总数的数据
             repeatitems: true
         },
+        loadComplete: function(json){
+        	if(json && (json.result == false) && json.message){
+        	    alert(json.message);
+        	}
+        },
         pager:$('#gridPager')
     });
 });
