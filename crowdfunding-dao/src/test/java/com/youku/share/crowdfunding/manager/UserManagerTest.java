@@ -83,7 +83,7 @@ public class UserManagerTest {
 	@Test
 	public void testDeleteUser() throws Exception {
 		intf.delete(145L);
-		assertNotNull(intf.get(10L));
+		assertNotNull(intf.get(6L));
 	}
 	
 	@After

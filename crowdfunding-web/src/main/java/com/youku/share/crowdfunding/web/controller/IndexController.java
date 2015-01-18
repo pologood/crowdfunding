@@ -32,15 +32,14 @@ public class IndexController extends BaseController{
 	public ModelAndView welcome(String word, HttpServletRequest request){
 		logger.info("word==========="+word);
 		Map<String,Object> rootMap = new HashMap<String, Object>();
-		User user = new User();
-		user.setName(word);
-		user.setAge(30);
-		user.setGender("male");
-		user.setBackup("benson sefarious");
-		user.setCreateTime(new Date());
-		user.setUpdateTime(new Date());
-		//rootMap.put("word", word + " regist success ? " + userRegistionService.regist(user));
-		return new ModelAndView("index",rootMap);
+		return new ModelAndView("welcome",rootMap);
+	}
+	
+	@RequestMapping(value = "login")
+	public ModelAndView welcome(HttpServletRequest request){
+		logger.info("=====login======");
+		Map<String,Object> rootMap = new HashMap<String, Object>();
+		return new ModelAndView("login",rootMap);
 	}
 	
 	@RequestMapping(value = "test")

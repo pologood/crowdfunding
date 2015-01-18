@@ -4,6 +4,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.access.AccessDeniedHandler;
+import org.springframework.security.web.access.ExceptionTranslationFilter;
+import org.springframework.stereotype.Component;
 
 import com.youku.share.crowdfunding.util.Utils;
 
@@ -13,6 +15,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
+/**
+ * Used by {@link ExceptionTranslationFilter} to handle an
+ * <code>AccessDeniedException</code>.
+ *
+ * @author Ben Alex
+ */
+@Component
 public class AccessDeniedHandlerImpl implements AccessDeniedHandler {
 	
 	private static final Logger logger = LogManager.getLogger(AccessDeniedHandlerImpl.class);
@@ -41,19 +50,16 @@ public class AccessDeniedHandlerImpl implements AccessDeniedHandler {
 			HttpServletResponse response,
 			AccessDeniedException accessDeniedException) throws IOException,
 			ServletException {
-		if (isAjaxRequest(request)) {
-
+		logger.error("requestURL = " + request.getRequestURL().toString());
+		
+		if (Utils.isAjaxRequest(request)) {
+			logger.error("ajax deny unimplements !");
 		} else {
-			response.sendRedirect(accessDeniedUrl);
 			String deniedMessage = accessDeniedException.getMessage();
 			request.getSession().setAttribute(ACCESS_DENIED_MSG, deniedMessage);
+			logger.error("deny message = " + deniedMessage);
+			response.sendRedirect(accessDeniedUrl);
 		}
-	}
-
-	public boolean isAjaxRequest(HttpServletRequest request) {
-		boolean isAjaxRequest = Utils.isAjaxRequest(request);
-		logger.info("isAjaxRequest=" + isAjaxRequest);
-		return isAjaxRequest;
 	}
 
 	public String getAccessDeniedUrl() {

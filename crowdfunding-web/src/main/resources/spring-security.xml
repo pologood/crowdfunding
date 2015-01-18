@@ -15,12 +15,12 @@
     
     <security:http auto-config="true">
         <!-- 登录配置 -->
-        <security:form-login login-page="/login.jsp"
-                             authentication-failure-url="/login.jsp?err=true"
-                             default-target-url="/index.jsp"
+        <security:form-login login-page="/index/login"
+                             authentication-failure-url="/index/login?err=true"
+                             default-target-url="/index/welcome"
                              username-parameter="j_username"
                              password-parameter="j_password"
-                             login-processing-url="/j_spring_security_check"/>
+                             login-processing-url="/index/j_spring_security_check"/>
         <!-- 退出配置 -->
         <!--
             logout-url:退出请求地址。系统默认:j_spring_security_logout
@@ -49,9 +49,9 @@
     </bean>
 
     <!-- 自定义过滤器 -->
-    <bean id="mySecurityFilter" class="com.security.MySecurityInterceptor">
+    <bean id="mySecurityFilter" class="com.youku.share.crowdfunding.web.security.SecurityInterceptorImpl">
         <!-- FilterInvocationSecurityMetadataSource 接口实现类, 资源源数据定义 -->
-        <property name="securityMetadataSource" ref="mySecurityMetadataSource"/>
+        <property name="filterInvocationSecurityMetadataSource" ref="mySecurityMetadataSource"/>
         <!-- 鉴定管理类，跟用户信息信息有关 -->
         <property name="authenticationManager" ref="myAuthenticationManager"/>
         <!-- AccessDecisionManager 接口实现类, 角色跟资源的关系 -->
@@ -70,14 +70,21 @@
             </security:password-encoder>
         </security:authentication-provider>
     </security:authentication-manager>
+    
     <!-- 用户详细信息获取接口 -->
-    <bean id="myUserDetailsService" class="com.security.MyUserDetailsService"/>
+    <bean id="myUserDetailsService" class="com.youku.share.crowdfunding.web.security.UserDetailsServiceImpl"/>
     <!-- 访问决策器， 决定某个用户具体的角色，是否有足够的权限访问某个资源 -->
-    <bean id="myAccessDecisionManager" class="com.security.MyAccessDecisionManager"/>
+    <bean id="myAccessDecisionManager" class="com.youku.share.crowdfunding.web.security.AccessDecisionManagerImpl"/>
     <!-- 资源源数据定义， 将所有的资源和权限的对应关系建立起来，即定义某一资源可以被哪些角色去访问。-->
-    <bean id="mySecurityMetadataSource" class="com.youku.share.crowdfunding.web.security.FilterInvocationSecurityMetadataSourceImpl"/>
+    <bean id="mySecurityMetadataSource" class="com.youku.share.crowdfunding.web.security.FilterInvocationSecurityMetadataSourceImpl" />
+        <!-- constructor-arg name="securitySysRoleService" ref="securitySysRoleService"/>
+        <property name="securitySysRoleService" ref="securitySysRoleService" />
+    </bean-->
     <!-- 用户详情管理类使用的加密方式 -->
     <bean id="passwdEcoder" class="org.springframework.security.authentication.encoding.Md5PasswordEncoder"/>
     <!-- PasswordEncoder 密码接口 -->
     <bean id="PasswordUtil" class="com.youku.share.crowdfunding.web.security.PasswordUtil" lazy-init="false"/>
+    
+    <!-- bean id="sysRoleService" class="com.youku.share.crowdfunding.web.security.SecuritySysRoleServiceImpl"/ -->
+    
 </beans>

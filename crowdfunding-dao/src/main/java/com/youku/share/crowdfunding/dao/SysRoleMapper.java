@@ -2,8 +2,6 @@ package com.youku.share.crowdfunding.dao;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
-
 import com.youku.share.crowdfunding.po.SysRole;
 
 public interface SysRoleMapper {

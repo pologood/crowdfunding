@@ -1,7 +1,6 @@
 package com.youku.share.crowdfunding.web.filter;
 
 import java.io.IOException;
-import java.util.Enumeration;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -33,7 +32,7 @@ public class ExceptionFilter implements Filter {
 
 		HttpServletRequest request = (HttpServletRequest) req;
 		HttpServletResponse response = (HttpServletResponse) res;
-		loggerParameter(request);
+		Utils.loggerRequestParameterImport(request);
 		// 捕获你抛出的业务异常
 		try {
 			chain.doFilter(req, res);
@@ -67,7 +66,8 @@ public class ExceptionFilter implements Filter {
 		 */
 		boolean isAjaxRequest = Utils.isAjaxRequest(request);
 		if(isAjaxRequest){
-			ajaxHandle(request,response,t);
+			String jsonResponse = getJsonForResponse(t);
+			Utils.ajaxResponse(request, response, jsonResponse);
 		}else{
 			Throwable cause = t.getCause();
 			if (cause instanceof BaseException) {// 如果是你定义的业务异常
@@ -86,120 +86,10 @@ public class ExceptionFilter implements Filter {
 		}
 	}
 	
-	private void ajaxHandle(HttpServletRequest request,HttpServletResponse response,Throwable t) throws IOException{
-		response.setCharacterEncoding("UTF-8");
-		response.setContentType("text/xml; charset=UTF-8");
-		response.setHeader("Cache-Control","no-cache");
-		response.getWriter().write(getJsonForHandle(t));
-		response.getWriter().flush();
-		response.getWriter().close();
-	}
-	
-	private String getJsonForHandle(Throwable t){
+	private String getJsonForResponse(Throwable t){
 		String json = "{\"flag\":false,\"message\":\""+t.getCause().getMessage()+"\"}";
 		logger.info("ajax response : "+json);
 		return json;
 	}
 	
-	//debug级别输出所有参数
-	private void loggerParameter(HttpServletRequest request){
-		
-		/*
-		 * 此部分功能待 Spring Security 3 搞定之后再放开
-		 * 获得当前登陆用户对应的对象。
-		 * UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext()
-		 * 	    .getAuthentication()
-		 * 	    .getPrincipal();
-		 * 获得当前登陆用户所拥有的所有权限。
-		 * GrantedAuthority[] authorities = userDetails.getAuthorities();
-		 * 
-		 * logger用户身份信息
-		 */
-		String getAuthType = request.getAuthType();
-		String getCharacterEncoding = request.getCharacterEncoding();
-		String getContentType = request.getContentType();
-		String getContentLength = "" + request.getContentLength();
-		String getContextPath = request.getContextPath();
-		String getLocaleGetCountry = request.getLocale().getCountry();
-		String getLocaleGetLanguage = request.getLocale().getLanguage();
-		//String getLocales = request.getLocales();
-		String getLocalName = request.getLocalName();
-		String getLocalAddr = request.getLocalAddr();
-		String getMethod = request.getMethod();
-		String getPathInfo = request.getPathInfo();
-		String getProtocol = request.getProtocol();
-		String getQueryString = request.getQueryString();
-		String getRemoteAddr = request.getRemoteAddr();
-		String getRemotePort = "" + request.getRemotePort();
-		String getRemoteUser = request.getRemoteUser();
-		String getRequestedSessionId = request.getRequestedSessionId();
-		String getRequestURI = request.getRequestURI();
-		String getRequestURL = request.getRequestURL().toString();
-		String getScheme = request.getScheme();
-		String getServerName = request.getServerName();
-		String getServerPort = "" + request.getServerPort();
-		String getServletPath = request.getServletPath();
-		String getUserPrincipalGetName = request.getUserPrincipal() == null ? "null" : request.getUserPrincipal().getName();
-		
-		logger.trace("===== request info start =====");
-		logger.debug("getAuthType == " + getAuthType);
-		logger.debug("getCharacterEncoding == " + getCharacterEncoding);
-		logger.debug("getContentType == " + getContentType);
-		logger.debug("getContentLength == " + getContentLength);
-		logger.debug("getContextPath == " + getContextPath);
-		logger.debug("getLocaleGetCountry == " + getLocaleGetCountry);
-		logger.debug("getLocaleGetLanguage == " + getLocaleGetLanguage);
-		logger.debug("getLocalName == " + getLocalName);
-		logger.debug("getLocalAddr == " + getLocalAddr);
-		logger.debug("getMethod == " + getMethod);
-		logger.debug("getPathInfo == " + getPathInfo);
-		logger.debug("getProtocol == " + getProtocol);
-		logger.debug("getQueryString == " + getQueryString);
-		logger.debug("getRemoteAddr == " + getRemoteAddr);
-		logger.debug("getRemotePort == " + getRemotePort);
-		logger.debug("getRemoteUser == " + getRemoteUser);
-		logger.debug("getRequestedSessionId == " + getRequestedSessionId);
-		logger.debug("getRequestURI == " + getRequestURI);
-		logger.debug("getRequestURL == " + getRequestURL);
-		logger.debug("getScheme == " + getScheme);
-		logger.debug("getServerName == " + getServerName);
-		logger.debug("getServerPort == " + getServerPort);
-		logger.debug("getServletPath == " + getServletPath);
-		logger.debug("getUserPrincipalGetName == " + getUserPrincipalGetName);
-		logger.debug("isAjaxRequest === " + Utils.isAjaxRequest(request));
-		
-		logger.debug("===== attribute info start =====");
-		@SuppressWarnings("rawtypes")
-		Enumeration attributeNameEnum = request.getAttributeNames();
-		while(attributeNameEnum.hasMoreElements()){
-			Object attributeName = attributeNameEnum.nextElement();
-			String attributeNameString = attributeName.toString();
-			Object attributeValue = request.getAttribute(attributeNameString);
-			String attributeValueString = attributeValue.toString();
-			logger.debug(attributeNameString+" === " + attributeValueString);
-		}
-		
-		logger.debug("===== header info start =====");
-		@SuppressWarnings("rawtypes")
-		Enumeration headerNameEnum = request.getHeaderNames();
-		while(headerNameEnum.hasMoreElements()){
-			Object headerName = headerNameEnum.nextElement();
-			String headerNameString = headerName.toString();
-			String headerValueString = request.getHeader(headerNameString);
-			logger.debug(headerNameString+" === " + headerValueString);
-		}
-				
-		logger.debug("===== parameter info start =====");
-		@SuppressWarnings("rawtypes")
-		Enumeration parameterNameEnum = request.getParameterNames();
-		while(parameterNameEnum.hasMoreElements()){
-			Object parameterName = parameterNameEnum.nextElement();
-			String parameterNameString = parameterName.toString();
-			String parameterValueString = request.getParameter(parameterNameString);
-			logger.debug(parameterNameString+" === " + parameterValueString);
-		}
-		
-		logger.debug("===== request info end =====");
-		
-	}
 }

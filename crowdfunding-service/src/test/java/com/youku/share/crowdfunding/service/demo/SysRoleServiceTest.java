@@ -1,4 +1,4 @@
-package com.youku.share.crowdfunding.web.other;
+package com.youku.share.crowdfunding.service.demo;
 
 import java.util.List;
 
@@ -13,15 +13,15 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.youku.share.crowdfunding.po.SysRole;
 import com.youku.share.crowdfunding.service.security.SysRoleService;
 
-public class OtherTest{
-	private static final Logger logger = LogManager.getLogger(OtherTest.class);
+public class SysRoleServiceTest {
+	private static final Logger logger = LogManager.getLogger(SysRoleServiceTest.class);
 	
 	private ApplicationContext ctx = null;
 	private SysRoleService sysRoleService;
 	
 	@Before
 	public void init() throws Exception {
-		ctx = new ClassPathXmlApplicationContext(new String[]{"classpath:spring-web.xml"});
+		ctx = new ClassPathXmlApplicationContext(new String[]{"classpath:spring-service.xml"});
 		sysRoleService = ctx.getBean(SysRoleService.class);
 	}
 	

@@ -76,4 +76,7 @@ public class SysUserManagerImpl implements SysUserManager{
 		return sysUserMapper.selectByPrimaryKey(id);
 	}
 	
+	public List<SysUser> find(SysUser sysUser){
+		return sysUserMapper.selectWhere(sysUser);
+	}
 }

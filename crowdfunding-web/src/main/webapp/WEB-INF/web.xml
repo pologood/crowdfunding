@@ -18,7 +18,7 @@
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
-			classpath:spring-service.xml
+			classpath:spring-web.xml
 		</param-value>
 	</context-param>
     <!-- ,classpath:spring-security.xml -->
@@ -89,14 +89,14 @@
     </filter-mapping-->
     
     <!-- Spring Security过滤器 -->
-    <!-- filter>
+    <filter>
         <filter-name>springSecurityFilterChain</filter-name>   
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>springSecurityFilterChain</filter-name>
-        <url-pattern>/admin/*</url-pattern>
-    </filter-mapping-->
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 
     <!-- Session超时定义,单位为分钟 -->
     <session-config>

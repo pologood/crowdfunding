@@ -77,7 +77,7 @@
         <property name="validationMessageSource" ref="messageSource"/>
     </bean>
     
-	<mvc:view-controller path="/" view-name="redirect:/index/welcome" />
+	<mvc:view-controller path="/" view-name="redirect:/index/login" />
 	<mvc:resources location="/static/" mapping="/static/**" />
 
 	<bean id="contentNegotiationManager"
@@ -95,9 +95,6 @@
 			</value>
 		</property>
 	</bean>
-
-
-
 
 	<mvc:annotation-driven
 		content-negotiation-manager="contentNegotiationManager" />

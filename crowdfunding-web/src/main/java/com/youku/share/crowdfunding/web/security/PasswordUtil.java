@@ -6,8 +6,10 @@ import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
+import org.springframework.stereotype.Component;
 import org.springframework.web.context.ServletContextAware;
 
+@Component
 public class PasswordUtil implements ApplicationContextAware, ServletContextAware {
     
 	@SuppressWarnings("unused")
