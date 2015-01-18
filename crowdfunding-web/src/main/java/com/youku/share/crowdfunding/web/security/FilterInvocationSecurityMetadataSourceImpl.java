@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.ConfigAttribute;
 import org.springframework.security.access.SecurityConfig;
 import org.springframework.security.access.intercept.AbstractSecurityInterceptor;
@@ -130,6 +129,10 @@ public class FilterInvocationSecurityMetadataSourceImpl implements
 		return true;
 	}
 
+	/*
+	 * 修改角色或者资源后是否需要刷新此缓存数据？
+	 * 如果一个请求的资源找不到对应的角色，那么此资源默认不受访问限制
+	 */
 	private void initRaMap() {
 		if (arMap == null) {
 			synchronized (this) {
