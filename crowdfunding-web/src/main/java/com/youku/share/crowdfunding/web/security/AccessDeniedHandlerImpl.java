@@ -53,13 +53,13 @@ public class AccessDeniedHandlerImpl implements AccessDeniedHandler {
 		logger.error("requestURL = " + request.getRequestURL().toString());
 		
 		if (Utils.isAjaxRequest(request)) {
-			logger.error("ajax deny unimplements !");
+			//logger.error("ajax deny unimplements !");
 			Utils.ajaxResponse(request, response, "{\"result\":false,\"message\":\"无权限\"}");
 		} else {
 			String deniedMessage = accessDeniedException.getMessage();
 			request.getSession().setAttribute(ACCESS_DENIED_MSG, deniedMessage);
 			logger.error("deny message = " + deniedMessage);
-			response.sendRedirect(accessDeniedUrl);
+			response.sendRedirect(request.getContextPath() + accessDeniedUrl);
 		}
 	}
 

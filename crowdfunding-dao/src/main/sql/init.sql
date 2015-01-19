@@ -54,6 +54,11 @@ INSERT INTO `sys_authoritie` VALUES ('2', 'save', '/stc/save.do');
 INSERT INTO `sys_authoritie` VALUES ('3', 'update', '/stc/update.do');
 INSERT INTO `sys_authoritie` VALUES ('4', 'delete', '/stc/delete.do');
 
+INSERT INTO `sys_authoritie` VALUES ('5', 'user_list', '/user/list');
+INSERT INTO `sys_authoritie` VALUES ('6', 'all', '/**');
+INSERT INTO `sys_authoritie` VALUES ('7', 'index_welcome', '/index/welcome');
+INSERT INTO `sys_authoritie` VALUES ('8', 'user_save', '/user/save');
+
 -- ----------------------------
 -- Table structure for sys_role
 -- ----------------------------
@@ -68,8 +73,8 @@ CREATE TABLE `sys_role` (
 -- Records of sys_role
 -- ----------------------------
 INSERT INTO `sys_role` VALUES ('1', 'admin');
-INSERT INTO `sys_role` VALUES ('3', 'custom');
 INSERT INTO `sys_role` VALUES ('2', 'user');
+INSERT INTO `sys_role` VALUES ('3', 'custom');
 
 -- ----------------------------
 -- Table structure for sys_role_authoritie_mapping
@@ -92,6 +97,11 @@ INSERT INTO `sys_role_authoritie_mapping` VALUES ('1', '1', '1');
 INSERT INTO `sys_role_authoritie_mapping` VALUES ('2', '2', '2');
 INSERT INTO `sys_role_authoritie_mapping` VALUES ('3', '2', '3');
 INSERT INTO `sys_role_authoritie_mapping` VALUES ('5', '2', '4');
+
+INSERT INTO `sys_role_authoritie_mapping` VALUES ('6', '1', '6');
+INSERT INTO `sys_role_authoritie_mapping` VALUES ('7', '2', '5');
+INSERT INTO `sys_role_authoritie_mapping` VALUES ('8', '2', '7');
+INSERT INTO `sys_role_authoritie_mapping` VALUES ('9', '2', '8');
 
 -- ----------------------------
 -- Table structure for sys_user
@@ -132,5 +142,19 @@ CREATE TABLE `sys_user_role_mapping` (
 INSERT INTO `sys_user_role_mapping` VALUES ('1', '1', '1');
 INSERT INTO `sys_user_role_mapping` VALUES ('2', '2', '2');
 INSERT INTO `sys_user_role_mapping` VALUES ('3', '3', '3');
+
+-- FULL VIEW
+select
+u.*,'|',r.*,'|',a.*
+from sys_user u
+left join sys_user_role_mapping ur
+on u.user_id = ur.user_id
+left join sys_role r
+on ur.role_id = r.role_id
+left join sys_role_authoritie_mapping ra
+on r.role_id = ra.role_id
+left join sys_authoritie a
+on ra.auth_id = a.auth_id;
+
 
 

@@ -40,18 +40,18 @@ public class UserController extends BaseController{
 	}
 	
 	@RequestMapping(value = "/save")
-	public @ResponseBody String save(@RequestBody String body, /*User user, String name, int age, String gender, String backup,*/HttpServletRequest request){
+	public @ResponseBody String save(@RequestBody String body, User user, /*String name, int age, String gender, String backup,*/HttpServletRequest request){
 		logger.info("body = " + body);
 		
-		//		User user = new User();
+//		User user = new User();
 //		user.setName(name);
 //		user.setAge(age);
 //		user.setGender(gender);
 //		user.setBackup(backup);
-//		user.setCreateTime(new Date());
-//		user.setUpdateTime(new Date());
+		user.setCreateTime(new Date());
+		user.setUpdateTime(new Date());
 		boolean ret = false;
-//		ret = userRegistionService.regist(user);
+		ret = userRegistionService.regist(user);
 		return ("{\"result\":" + ret +"}");
 	}
 	

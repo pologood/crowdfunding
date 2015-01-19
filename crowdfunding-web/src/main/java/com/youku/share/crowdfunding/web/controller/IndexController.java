@@ -1,6 +1,5 @@
 package com.youku.share.crowdfunding.web.controller;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,7 +15,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.youku.share.crowdfunding.exception.AuthorityException;
 import com.youku.share.crowdfunding.exception.BusinessException;
 import com.youku.share.crowdfunding.exception.PlatformException;
-import com.youku.share.crowdfunding.po.User;
 import com.youku.share.crowdfunding.service.demo.UserRegistionService;
 
 @Controller
@@ -29,17 +27,25 @@ public class IndexController extends BaseController{
 	private UserRegistionService userRegistionService;
 	
 	@RequestMapping(value = "welcome")
-	public ModelAndView welcome(String word, HttpServletRequest request){
-		logger.info("word==========="+word);
+	public ModelAndView welcome(HttpServletRequest request){
+		logger.info("=====welcome======");
 		Map<String,Object> rootMap = new HashMap<String, Object>();
 		return new ModelAndView("welcome",rootMap);
 	}
 	
 	@RequestMapping(value = "login")
-	public ModelAndView welcome(HttpServletRequest request){
+	public ModelAndView login(HttpServletRequest request){
 		logger.info("=====login======");
 		Map<String,Object> rootMap = new HashMap<String, Object>();
 		return new ModelAndView("login",rootMap);
+	}
+	
+	@RequestMapping(value = "message")
+	public ModelAndView message(String message, HttpServletRequest request){
+		logger.info("=====message======");
+		Map<String,Object> rootMap = new HashMap<String, Object>();
+		rootMap.put("message", message);
+		return new ModelAndView("index/message",rootMap);
 	}
 	
 	@RequestMapping(value = "test")

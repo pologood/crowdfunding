@@ -100,16 +100,28 @@ public class FilterInvocationSecurityMetadataSourceImpl implements
 		
 		HttpServletRequest request = ((FilterInvocation) object)
 				.getHttpRequest();
+		
+		Collection<ConfigAttribute> roleCollection = new HashSet<ConfigAttribute>();
+		
 		RequestMatcher matcher = null;
 		for (Iterator<String> iter = arMap.keySet().iterator(); iter.hasNext();) {
 			String oneAuthoritieUrl = iter.next();
 			matcher = new AntPathRequestMatcher(oneAuthoritieUrl);
 			if (null != oneAuthoritieUrl && matcher.matches(request)) {
-				return arMap.get(oneAuthoritieUrl);
+				Collection<ConfigAttribute> oneRoleCollection = arMap.get(oneAuthoritieUrl);
+				for(ConfigAttribute oneConfigAttribute : oneRoleCollection){
+					if(!roleCollection.contains(oneConfigAttribute)){
+						roleCollection.add(oneConfigAttribute);
+					}
+				}
 			}
 		}
-
-		return null;
+		
+		if(roleCollection.size() > 0){
+			return roleCollection;
+		}
+		
+		throw new IllegalArgumentException("undefine request uri[" + request.getRequestURI() + "]");
 	}
 
 	/**

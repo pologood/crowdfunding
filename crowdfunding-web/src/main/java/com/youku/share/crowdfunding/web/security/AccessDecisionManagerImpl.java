@@ -12,6 +12,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Component;
 
+import com.youku.share.crowdfunding.constants.Constants;
+
 /**
  * Makes a final access control (authorization) decision.
  *
@@ -49,6 +51,9 @@ public class AccessDecisionManagerImpl implements AccessDecisionManager {
 		logger.info("decide for user : " + authentication.getName());
 		for(GrantedAuthority ga : authentication.getAuthorities()){
 			logger.debug("one GrantedAuthority : " + ga.getAuthority());
+			if(Constants.SUPER_ROLE.equals(ga.getAuthority())){
+				return;
+			}
 		}
 		logger.info("the secured object being called : " + object);
 		logger.info("the configuration attributes associated with the secured object being invoked : fellow echo");

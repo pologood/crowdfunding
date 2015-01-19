@@ -10,13 +10,15 @@
           http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 
     <!-- 登录页面不过滤 ， 如果你不需要对某些访问路径，进行权限控制-->
-    <security:http pattern="/login" security="none"/>
-    <security:http pattern="/static" security="none"/>
+    <security:http pattern="/index/login" security="none"/>
+    <security:http pattern="/index/message**" security="none"/>
+    <security:http pattern="/static/**" security="none"/>
+    <security:http pattern="/" security="none"/>
     
     <security:http auto-config="true">
         <!-- 登录配置 -->
         <security:form-login login-page="/index/login"
-                             authentication-failure-url="/index/login?err=true"
+                             authentication-failure-url="/index/message?message=authentication—failure"
                              default-target-url="/index/welcome"
                              username-parameter="j_username"
                              password-parameter="j_password"
@@ -29,13 +31,17 @@
             success-handler-ref:退出回调接口。类需实现接口: LogoutSuccessHandler
             invalidate-session:如果设置为 true，用户的 Session 将会在退出时被失效。
          -->
-        <security:logout logout-success-url="/logout.jsp" invalidate-session="true"/>
+        <security:logout 
+            logout-url="/index/j_spring_security_logout"
+            logout-success-url="/index/message?message=logout" 
+            invalidate-session="true"
+        />
         <!-- 自定义没有权限的页面,Spring Security默认的403页面 -->
         <!--<security:access-denied-handler error-page = "/403.jsp"/>-->
         <security:access-denied-handler ref="accessDeniedHandler"/>
         <!--<security:remember-me/>-->
         <!-- 只能登陆一次 -->
-        <security:session-management session-authentication-error-url="/402.jsp" invalid-session-url="/sessionTimeout.jsp">
+        <security:session-management session-authentication-error-url="/index/message?message=402" invalid-session-url="/index/message?message=session—timeout">
             <security:concurrency-control max-sessions="1" error-if-maximum-exceeded="true"/>
         </security:session-management>
 
@@ -45,7 +51,7 @@
     </security:http>
 
     <bean id="accessDeniedHandler" class="com.youku.share.crowdfunding.web.security.AccessDeniedHandlerImpl">
-        <property name="accessDeniedUrl" value="/SpringSecurity/403.jsp" />
+        <property name="accessDeniedUrl" value="/index/message?message=authority-not-enough" />
     </bean>
 
     <!-- 自定义过滤器 -->

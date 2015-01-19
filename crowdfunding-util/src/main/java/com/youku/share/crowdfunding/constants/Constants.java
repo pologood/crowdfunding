@@ -6,4 +6,6 @@ public class Constants {
 	public static final String SITE_OWNER = "";
 	public static final String COPY_WRIGHT = "";
 	
+	public static final String SUPER_ROLE = "admin";
+	
 }
