@@ -15,7 +15,7 @@
 -->
 
 <%
-System.out.println("contextPath====="+request.getContextPath());
+//System.out.println("contextPath====="+request.getContextPath());
 %>
 
 <script type="text/javascript">

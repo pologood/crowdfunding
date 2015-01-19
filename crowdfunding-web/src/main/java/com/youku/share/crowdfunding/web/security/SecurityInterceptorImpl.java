@@ -9,6 +9,8 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.SecurityMetadataSource;
 import org.springframework.security.access.intercept.AbstractSecurityInterceptor;
@@ -20,7 +22,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class SecurityInterceptorImpl extends AbstractSecurityInterceptor
 		implements Filter {
-
+	
+	private static final Logger logger = LogManager.getLogger(SecurityInterceptorImpl.class);
+	
 	@Autowired
 	private FilterInvocationSecurityMetadataSource filterInvocationSecurityMetadataSource;
 
