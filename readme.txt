@@ -61,4 +61,5 @@ mvn jetty:run
 内置JavaMelody访问地址
 http://localhost:8080/crowdfunding/monitoring
 
-
+将监控方案由JavaMelody改为Druid,访问地址
+http://10.155.9.106:8080/crowdfunding/druid
