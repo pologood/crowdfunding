@@ -3,24 +3,24 @@
     xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
     xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
     id="crowdfunding-web" version="3.0">
-	
-	<display-name>YOUKU Crowdfunding</display-name>
+    
+    <display-name>YOUKU Crowdfunding</display-name>
 
-	<listener>
-		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-	</listener>
-	
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+    
     <!-- Spring刷新Introspector防止内存泄露 -->
     <listener>
         <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
     </listener>
-	
-	<context-param>
-		<param-name>contextConfigLocation</param-name>
-		<param-value>
-			classpath:spring-web.xml
-		</param-value>
-	</context-param>
+    
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>
+            classpath:spring-web.xml
+        </param-value>
+    </context-param>
     <!-- ,classpath:spring-security.xml -->
 
     <servlet>
@@ -61,18 +61,30 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
     
-	<filter>  
-	    <filter-name>exceptionFilter</filter-name>  
-	    <filter-class>com.youku.share.crowdfunding.web.filter.ExceptionFilter</filter-class>  
-	    <init-param>  
-	        <param-name>errorPage</param-name>  
-	        <param-value>/exception.jsp</param-value>  
-	    </init-param>  
-	</filter>  
-	<filter-mapping>  
-	    <filter-name>exceptionFilter</filter-name>  
-	    <url-pattern>/*</url-pattern>  
-	</filter-mapping>
+    <filter>
+        <filter-name>monitoring</filter-name>
+        <filter-class>net.bull.javamelody.MonitoringFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>monitoring</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <listener>
+        <listener-class>net.bull.javamelody.SessionListener</listener-class>
+    </listener>
+    
+    <filter>  
+        <filter-name>exceptionFilter</filter-name>  
+        <filter-class>com.youku.share.crowdfunding.web.filter.ExceptionFilter</filter-class>  
+        <init-param>  
+            <param-name>errorPage</param-name>  
+            <param-value>/exception.jsp</param-value>  
+        </init-param>  
+    </filter>  
+    <filter-mapping>  
+        <filter-name>exceptionFilter</filter-name>  
+        <url-pattern>/*</url-pattern>  
+    </filter-mapping>
     
     <!-- 验证码图片 -->
     <!-- filter>
@@ -103,7 +115,7 @@
         <session-timeout>60</session-timeout>
     </session-config>
     
-	<welcome-file-list>
-		<welcome-file></welcome-file>
-	</welcome-file-list>
+    <welcome-file-list>
+        <welcome-file></welcome-file>
+    </welcome-file-list>
 </web-app>

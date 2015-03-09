@@ -1,26 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	
-	<modelVersion>4.0.0</modelVersion>
-	
-	<parent>
-		<groupId>com.youku.share.crowdfunding</groupId>
-		<artifactId>crowdfunding-parent</artifactId>
-		<version>1.0.0-SNAPSHOT</version>
-	</parent>
+    
+    <modelVersion>4.0.0</modelVersion>
+    
+    <parent>
+        <groupId>com.youku.share.crowdfunding</groupId>
+        <artifactId>crowdfunding-parent</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
 
-	<artifactId>crowdfunding-web</artifactId>
-	<packaging>war</packaging>
-	<name>Crowdfunding Web</name>
+    <artifactId>crowdfunding-web</artifactId>
+    <packaging>war</packaging>
+    <name>Crowdfunding Web</name>
 
-	<properties>
-		<servlet_api.version>2.4</servlet_api.version>
-		<jsp_api.version>2.0</jsp_api.version>
-		<plugin.jetty.version>7.1.0.RC1</plugin.jetty.version>
-		<plugin.jetty.scanIntervalSeconds>10</plugin.jetty.scanIntervalSeconds>
-	</properties>
+    <properties>
+        <servlet_api.version>2.4</servlet_api.version>
+        <jsp_api.version>2.0</jsp_api.version>
+        <plugin.jetty.version>7.1.0.RC1</plugin.jetty.version>
+        <plugin.jetty.scanIntervalSeconds>10</plugin.jetty.scanIntervalSeconds>
+        
+        <servlet_jstl.version>1.2</servlet_jstl.version>
+        <hibernate_validator.version>5.1.0.CR1</hibernate_validator.version>
+        <fastjson.version>1.1.39</fastjson.version>
+        <javamelody.version>1.55.0</javamelody.version>
+    </properties>
 
-	<dependencies>
+    <dependencies>
     
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
@@ -32,39 +37,39 @@
         </dependency>
 
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
+          <groupId>junit</groupId>
+          <artifactId>junit</artifactId>
         </dependency>
 
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
-			<version>${servlet_api.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>javax.servlet.jsp</groupId>
-			<artifactId>jsp-api</artifactId>
-			<version>${jsp_api.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>jstl</artifactId>
-			<version>1.2</version>
-			<type>jar</type>
-			<scope>compile</scope>
-		</dependency>
-    		
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-web</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-webmvc</artifactId>
-		</dependency>
-		
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>${servlet_api.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>jsp-api</artifactId>
+            <version>${jsp_api.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>${servlet_jstl.version}</version>
+            <type>jar</type>
+            <scope>compile</scope>
+        </dependency>
+            
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+        </dependency>
+        
         <dependency>  
             <groupId>org.springframework.security</groupId>  
             <artifactId>spring-security-core</artifactId>  
@@ -82,41 +87,47 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
-            <version>5.1.0.CR1</version>
+            <version>${hibernate_validator.version}</version>
         </dependency>
         <dependency>
-               <groupId>com.alibaba</groupId>
-               <artifactId>fastjson</artifactId>
-               <version>1.1.39</version>
-		</dependency>
-		
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>crowdfunding-service</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-		
-	</dependencies>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${fastjson.version}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>net.bull.javamelody</groupId>
+            <artifactId>javamelody-core</artifactId>
+            <version>${javamelody.version}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>crowdfunding-service</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        
+    </dependencies>
 
-	<build>
-		
-		<finalName>crowdfunding</finalName>
-		
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<groupId>org.mortbay.jetty</groupId>
-					<artifactId>jetty-maven-plugin</artifactId>
-					<version>${plugin.jetty.version}</version>
-					<configuration>
-						<scanIntervalSeconds>${plugin.jetty.scanIntervalSeconds}</scanIntervalSeconds>
-						<webAppConfig>
-							<contextPath>/crowdfunding</contextPath>
-						</webAppConfig>
-					</configuration>
-				</plugin>
-			</plugins>
-		</pluginManagement>
-		
-	</build>
+    <build>
+        
+        <finalName>crowdfunding</finalName>
+        
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.mortbay.jetty</groupId>
+                    <artifactId>jetty-maven-plugin</artifactId>
+                    <version>${plugin.jetty.version}</version>
+                    <configuration>
+                        <scanIntervalSeconds>${plugin.jetty.scanIntervalSeconds}</scanIntervalSeconds>
+                        <webAppConfig>
+                            <contextPath>/crowdfunding</contextPath>
+                        </webAppConfig>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        
+    </build>
 </project>
