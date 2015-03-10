@@ -40,7 +40,16 @@
         <property name="minIdle" value="${jdbc.minIdle}" />        <!-- 队列中的最小等待数 -->
         <!--property name="poolPreparedStatements" value="${jdbc.poolPreparedStatements}" /-->
         <property name="defaultAutoCommit" value="${jdbc.defaultAutoCommit}" />
-        <property name="validationQuery" value="${jdbc.validationQuery}"/>        
+        <property name="validationQuery" value="${jdbc.validationQuery}"/>
+        
+        <property name="testOnBorrow" value="true"/>
+        <property name="testOnReturn" value="true" />
+        <property name="testWhileIdle" value="true" />
+        <property name="validationQuery" value="SELECT 1"/>
+        <property name="removeAbandoned" value="true" /><!-- 自动回收超时连接 -->
+        <property name="removeAbandonedTimeout" value="1800" /><!-- 自动回收超时时间(以秒数为单位) -->
+        <property name="logAbandoned" value="true" />
+        
     </bean>
 
     <!-- 事务管理 -->
