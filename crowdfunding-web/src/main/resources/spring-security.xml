@@ -13,6 +13,7 @@
     <security:http pattern="/index/login" security="none"/>
     <security:http pattern="/index/message**" security="none"/>
     <security:http pattern="/static/**" security="none"/>
+    <security:http pattern="/druid/**" security="none"/>
     <security:http pattern="/" security="none"/>
     
     <security:http auto-config="true">
