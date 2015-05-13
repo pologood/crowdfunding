@@ -25,7 +25,12 @@ var contextPath = '<%=request.getContextPath()%>';
 <link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/static/jquery-ui-1.11.2.custom/jquery-ui.min.css"/>
 <link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/static/jquery-ui-1.11.2.custom/jquery-ui.structure.min.css"/>
 <link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/static/jquery-ui-1.11.2.custom/jquery-ui.theme.min.css"/>
+<!--各种皮肤 替换上面的三个样式文件即可
+<link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/static/jquery-ui-1.11.2.custom/themes/ui-lightness/jquery-ui.min.css"/>
+<link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/static/jquery-ui-1.11.2.custom/themes/ui-lightness/theme.css"/>
+-->
 <link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/static/Guriddo_jqGrid_JS_4.7.1/css/ui.jqgrid.css"/>
+
 <script type="text/javascript" src="<%=request.getContextPath()%>/static/Guriddo_jqGrid_JS_4.7.1/js/jquery-1.11.0.min.js" ></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/static/jquery-ui-1.11.2.custom/jquery-ui.min.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/static/Guriddo_jqGrid_JS_4.7.1/js/i18n/grid.locale-cn.js"></script>
