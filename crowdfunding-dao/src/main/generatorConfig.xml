@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+	<!-- JDBC -->
+	<classPathEntry
+		location="E:\app_data\maven\mysql\mysql-connector-java\5.1.26\mysql-connector-java-5.1.26.jar" />
+
+	<context id="CORE" targetRuntime="MyBatis3">
+
+		<!-- comment -->
+		<commentGenerator>
+			<property name="suppressAllComments" value="true" />
+			<property name="suppressDate" value="true" />
+		</commentGenerator>
+
+		<!-- mysql -->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://10.10.69.23:3306/platanus_dev" userId="platanus_dev"
+			password="platanus_dev">
+
+		</jdbcConnection>
+
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+			<!-- PO -->
+		<javaModelGenerator targetPackage="com.youku.rsp.core.po"
+			targetProject="src/main/java">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+	
+		<!-- xml -->
+		<sqlMapGenerator targetPackage="com.youku.rsp.core.dao"
+			targetProject="src/main/resources">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+
+		<!-- DAO -->
+
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="com.youku.rsp.core.dao" targetProject="src/main/java">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+		
+		<!-- table -->		
+		<!--  
+		<table tableName="rsp_payment_company" schema="public" domainObjectName="PaymentCompany" />
+		<table tableName="rsp_alipay" schema="public" domainObjectName="Alipay" />
+		<table tableName="rsp_stat_revenue_issue" schema="public" domainObjectName="StatRevenueIssue" />
+		<table tableName="rsp_check_balance_day" schema="public" domainObjectName="CheckBalanceDay" />
+		<table tableName="rsp_check_accrual_amount_day" schema="public" domainObjectName="CheckAccrualAmountDay" />
+		-->
+        <table tableName="rsp_balance_stat_day" schema="public" domainObjectName="BalanceStatDay" />
+        <table tableName="rsp_payment_stat_day" schema="public" domainObjectName="PaymentStatDay" />
+		</context>
+
+</generatorConfiguration>
