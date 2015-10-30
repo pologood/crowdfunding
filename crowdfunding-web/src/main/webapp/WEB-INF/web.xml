@@ -52,7 +52,17 @@
             <param-value>service:jmx:rmi:///jndi/rmi://localhost:9004/jmxrmi</param-value>  
         </init-param>  
         -->
-    </servlet>  
+        <init-param>
+            <!-- 用户名 -->
+            <param-name>loginUsername</param-name>
+            <param-value>admin</param-value>
+        </init-param>
+        <init-param>
+            <!-- 密码 -->
+            <param-name>loginPassword</param-name>
+            <param-value>123456</param-value>
+        </init-param>
+    </servlet>
     <servlet-mapping>  
         <servlet-name>DruidStatView</servlet-name>  
         <url-pattern>/druid/*</url-pattern>  
