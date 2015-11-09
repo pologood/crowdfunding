@@ -9,15 +9,15 @@ import com.youku.share.crowdfunding.util.Utils;
  * */
 public class AuthorityException extends BaseException{
 
-	
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 6503867028057963202L;
+    
+    
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 6503867028057963202L;
 
-	public AuthorityException(){
-		super(Utils.generateSerialNumber(),"权限不足");
-	}
-	
+    public AuthorityException(){
+        super(Utils.generateSerialNumber(),"权限不足");
+    }
+    
 }

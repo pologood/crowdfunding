@@ -21,42 +21,42 @@ import com.youku.share.crowdfunding.service.security.SysRoleService;
 @Controller
 @RequestMapping("/sysrole")
 public class SysRoleController extends BaseController{
-	
-	private static final Logger logger = LogManager.getLogger(SysRoleController.class);
-	
-	@Autowired
-	private SysRoleService sysRoleService;
-	
-	@InitBinder("sysrole")    
-	public void initBinder1(WebDataBinder binder) {    
-		binder.setFieldDefaultPrefix("sysrole.");    
-	}
-	
-	@RequestMapping(value = "/update")
-	public @ResponseBody String update(SysRole sysRole, HttpServletRequest request){
-		logger.info("修改角色");
-		boolean ret = true;
-		
-		sysRole = new SysRole();
-		sysRole.setRoleId(2L);
-		
-		List<SysRoleAuthoritieMapping> list = new ArrayList<SysRoleAuthoritieMapping>();
-		SysRoleAuthoritieMapping m = new SysRoleAuthoritieMapping();
-		m.setAuthId(1L);
-		list.add(m);
-		m = new SysRoleAuthoritieMapping();
-		m.setAuthId(2L);
-		list.add(m);
-		m = new SysRoleAuthoritieMapping();
-		m.setAuthId(3L);
-		list.add(m);
-		m = new SysRoleAuthoritieMapping();
-		m.setAuthId(4L);
-		list.add(m);
-		
-		sysRole.setSysRoleAuthoritieMappingList(list);
-		sysRoleService.update(sysRole);
-		return ("{\"result\":" + ret +"}");
-	}
+    
+    private static final Logger logger = LogManager.getLogger(SysRoleController.class);
+    
+    @Autowired
+    private SysRoleService sysRoleService;
+    
+    @InitBinder("sysrole")    
+    public void initBinder1(WebDataBinder binder) {    
+        binder.setFieldDefaultPrefix("sysrole.");    
+    }
+    
+    @RequestMapping(value = "/update")
+    public @ResponseBody String update(SysRole sysRole, HttpServletRequest request){
+        logger.info("修改角色");
+        boolean ret = true;
+        
+        sysRole = new SysRole();
+        sysRole.setRoleId(2L);
+        
+        List<SysRoleAuthoritieMapping> list = new ArrayList<SysRoleAuthoritieMapping>();
+        SysRoleAuthoritieMapping m = new SysRoleAuthoritieMapping();
+        m.setAuthId(1L);
+        list.add(m);
+        m = new SysRoleAuthoritieMapping();
+        m.setAuthId(2L);
+        list.add(m);
+        m = new SysRoleAuthoritieMapping();
+        m.setAuthId(3L);
+        list.add(m);
+        m = new SysRoleAuthoritieMapping();
+        m.setAuthId(4L);
+        list.add(m);
+        
+        sysRole.setSysRoleAuthoritieMappingList(list);
+        sysRoleService.update(sysRole);
+        return ("{\"result\":" + ret +"}");
+    }
 
 }

@@ -39,49 +39,49 @@ import com.youku.share.crowdfunding.po.SysUser;
 @Component
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-	private static final Logger logger = LogManager
-			.getLogger(UserDetailsServiceImpl.class);
+    private static final Logger logger = LogManager
+            .getLogger(UserDetailsServiceImpl.class);
 
-	@Autowired
-	private SysUserManager sysUserManager;
+    @Autowired
+    private SysUserManager sysUserManager;
 
-	/**
-	 * Locates the user based on the username. In the actual implementation, the
-	 * search may possibly be case sensitive, or case insensitive depending on
-	 * how the implementation instance is configured. In this case, the
-	 * <code>UserDetails</code> object that comes back may have a username that
-	 * is of a different case than what was actually requested..
-	 *
-	 * @param username
-	 *            the username identifying the user whose data is required.
-	 *
-	 * @return a fully populated user record (never <code>null</code>)
-	 *
-	 * @throws UsernameNotFoundException
-	 *             if the user could not be found or the user has no
-	 *             GrantedAuthority
-	 */
-	public UserDetails loadUserByUsername(String username)
-			throws UsernameNotFoundException {
-		logger.info("loadUserByUsername username = " + username);
-		SysUser sysUser = new SysUser();
-		sysUser.setUserName(username);
-		List<SysUser> sysUserList = sysUserManager.find(sysUser);
-		if (sysUserList != null && sysUserList.size() == 1) {
-			SysUser storedSysUser = sysUserList.get(0);
-			return new User(storedSysUser.getUserName(), storedSysUser.getPassword(), true,
-					true, true, true, getGrantedSysRoles(storedSysUser));
-		}
-		throw new UsernameNotFoundException("can not find username = "
-				+ username);
-	}
+    /**
+     * Locates the user based on the username. In the actual implementation, the
+     * search may possibly be case sensitive, or case insensitive depending on
+     * how the implementation instance is configured. In this case, the
+     * <code>UserDetails</code> object that comes back may have a username that
+     * is of a different case than what was actually requested..
+     *
+     * @param username
+     *            the username identifying the user whose data is required.
+     *
+     * @return a fully populated user record (never <code>null</code>)
+     *
+     * @throws UsernameNotFoundException
+     *             if the user could not be found or the user has no
+     *             GrantedAuthority
+     */
+    public UserDetails loadUserByUsername(String username)
+            throws UsernameNotFoundException {
+        logger.info("loadUserByUsername username = " + username);
+        SysUser sysUser = new SysUser();
+        sysUser.setUserName(username);
+        List<SysUser> sysUserList = sysUserManager.find(sysUser);
+        if (sysUserList != null && sysUserList.size() == 1) {
+            SysUser storedSysUser = sysUserList.get(0);
+            return new User(storedSysUser.getUserName(), storedSysUser.getPassword(), true,
+                    true, true, true, getGrantedSysRoles(storedSysUser));
+        }
+        throw new UsernameNotFoundException("can not find username = "
+                + username);
+    }
 
-	private Set<GrantedAuthority> getGrantedSysRoles(SysUser sysUser) {
-		List<SysRole> sysRoleList = sysUser.getSysRoleList();
-		Set<GrantedAuthority> grantedSysRoles = new HashSet<GrantedAuthority>();
-		for (SysRole sysRole : sysRoleList) {
-			grantedSysRoles.add(new SimpleGrantedAuthority(sysRole.getName()));
-		}
-		return grantedSysRoles;
-	}
+    private Set<GrantedAuthority> getGrantedSysRoles(SysUser sysUser) {
+        List<SysRole> sysRoleList = sysUser.getSysRoleList();
+        Set<GrantedAuthority> grantedSysRoles = new HashSet<GrantedAuthority>();
+        for (SysRole sysRole : sysRoleList) {
+            grantedSysRoles.add(new SimpleGrantedAuthority(sysRole.getName()));
+        }
+        return grantedSysRoles;
+    }
 }

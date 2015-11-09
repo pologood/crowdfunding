@@ -2,17 +2,17 @@
 <!DOCTYPE configuration PUBLIC "-//ibatis.apache.org//DTD Config 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-config.dtd">
 
 <configuration>
-	<settings>
-		<!-- 设置延迟加载 -->
-		<setting name="lazyLoadingEnabled" value="true" />
-		<!-- 按需加载对象属性 -->
-		<setting name="aggressiveLazyLoading" value="false" />
-		<setting name="defaultExecutorType" value="REUSE" />
-		
-		<setting name="cacheEnabled" value="true" />
-		<setting name="multipleResultSetsEnabled" value="true" />
-		<setting name="useColumnLabel" value="true" />
-		<setting name="defaultStatementTimeout" value="25000" />
-		
-	</settings>
+    <settings>
+        <!-- 设置延迟加载 -->
+        <setting name="lazyLoadingEnabled" value="true" />
+        <!-- 按需加载对象属性 -->
+        <setting name="aggressiveLazyLoading" value="false" />
+        <setting name="defaultExecutorType" value="REUSE" />
+        
+        <setting name="cacheEnabled" value="true" />
+        <setting name="multipleResultSetsEnabled" value="true" />
+        <setting name="useColumnLabel" value="true" />
+        <setting name="defaultStatementTimeout" value="25000" />
+        
+    </settings>
 </configuration>

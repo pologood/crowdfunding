@@ -14,27 +14,27 @@ import com.youku.share.crowdfunding.po.SysRole;
 import com.youku.share.crowdfunding.service.security.SysRoleService;
 
 public class OtherTest{
-	private static final Logger logger = LogManager.getLogger(OtherTest.class);
-	
-	private ApplicationContext ctx = null;
-	private SysRoleService sysRoleService;
-	
-	@Before
-	public void init() throws Exception {
-		ctx = new ClassPathXmlApplicationContext(new String[]{"classpath:spring-web.xml"});
-		sysRoleService = ctx.getBean(SysRoleService.class);
-	}
-	
-	@Test
-	public void testGetAll(){
-		List<SysRole> sysRoleList = sysRoleService.getAll();
-		for(SysRole sysRole : sysRoleList){
-			logger.info("sysRole.name = " + sysRole.getName());
-		}
-	}
-	
-	@After
-	public void destroy() throws Exception {
-		
-	}
+    private static final Logger logger = LogManager.getLogger(OtherTest.class);
+    
+    private ApplicationContext ctx = null;
+    private SysRoleService sysRoleService;
+    
+    @Before
+    public void init() throws Exception {
+        ctx = new ClassPathXmlApplicationContext(new String[]{"classpath:spring-web.xml"});
+        sysRoleService = ctx.getBean(SysRoleService.class);
+    }
+    
+    @Test
+    public void testGetAll(){
+        List<SysRole> sysRoleList = sysRoleService.getAll();
+        for(SysRole sysRole : sysRoleList){
+            logger.info("sysRole.name = " + sysRole.getName());
+        }
+    }
+    
+    @After
+    public void destroy() throws Exception {
+        
+    }
 }

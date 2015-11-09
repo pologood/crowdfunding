@@ -23,17 +23,17 @@ import java.io.IOException;
  */
 @Component
 public class AccessDeniedHandlerImpl implements AccessDeniedHandler {
-	
-	private static final Logger logger = LogManager.getLogger(AccessDeniedHandlerImpl.class);
-	
-	private static String ACCESS_DENIED_MSG = "message";
-	private String accessDeniedUrl;
+    
+    private static final Logger logger = LogManager.getLogger(AccessDeniedHandlerImpl.class);
+    
+    private static String ACCESS_DENIED_MSG = "message";
+    private String accessDeniedUrl;
 
-	public AccessDeniedHandlerImpl() {}
+    public AccessDeniedHandlerImpl() {}
 
-	public AccessDeniedHandlerImpl(String accessDeniedUrl) {
-		this.accessDeniedUrl = accessDeniedUrl;
-	}
+    public AccessDeniedHandlerImpl(String accessDeniedUrl) {
+        this.accessDeniedUrl = accessDeniedUrl;
+    }
 
     /**
      * Handles an access denied failure.
@@ -45,30 +45,30 @@ public class AccessDeniedHandlerImpl implements AccessDeniedHandler {
      * @throws IOException in the event of an IOException
      * @throws ServletException in the event of a ServletException
      */
-	@Override
-	public void handle(HttpServletRequest request,
-			HttpServletResponse response,
-			AccessDeniedException accessDeniedException) throws IOException,
-			ServletException {
-		logger.error("requestURL = " + request.getRequestURL().toString());
-		
-		if (Utils.isAjaxRequest(request)) {
-			//logger.error("ajax deny unimplements !");
-			Utils.ajaxResponse(request, response, "{\"result\":false,\"message\":\"无权限\"}");
-		} else {
-			String deniedMessage = accessDeniedException.getMessage();
-			request.getSession().setAttribute(ACCESS_DENIED_MSG, deniedMessage);
-			logger.error("deny message = " + deniedMessage);
-			response.sendRedirect(request.getContextPath() + accessDeniedUrl);
-		}
-	}
+    @Override
+    public void handle(HttpServletRequest request,
+            HttpServletResponse response,
+            AccessDeniedException accessDeniedException) throws IOException,
+            ServletException {
+        logger.error("requestURL = " + request.getRequestURL().toString());
+        
+        if (Utils.isAjaxRequest(request)) {
+            //logger.error("ajax deny unimplements !");
+            Utils.ajaxResponse(request, response, "{\"result\":false,\"message\":\"无权限\"}");
+        } else {
+            String deniedMessage = accessDeniedException.getMessage();
+            request.getSession().setAttribute(ACCESS_DENIED_MSG, deniedMessage);
+            logger.error("deny message = " + deniedMessage);
+            response.sendRedirect(request.getContextPath() + accessDeniedUrl);
+        }
+    }
 
-	public String getAccessDeniedUrl() {
-		return accessDeniedUrl;
-	}
+    public String getAccessDeniedUrl() {
+        return accessDeniedUrl;
+    }
 
-	public void setAccessDeniedUrl(String accessDeniedUrl) {
-		this.accessDeniedUrl = accessDeniedUrl;
-	}
+    public void setAccessDeniedUrl(String accessDeniedUrl) {
+        this.accessDeniedUrl = accessDeniedUrl;
+    }
 
 }

@@ -14,23 +14,23 @@ import com.youku.share.crowdfunding.service.security.SysRoleService;
 @Component
 @Service("sysRoleService")
 public class SysRoleServiceImpl implements SysRoleService{
-	
-	@Autowired
-	private SysRoleManager sysRoleManager;
-	
-	@Override
-	public Page<SysRole> page(SysRole sysRole) {
-		return sysRoleManager.pageQuery(sysRole);
-	}
+    
+    @Autowired
+    private SysRoleManager sysRoleManager;
+    
+    @Override
+    public Page<SysRole> page(SysRole sysRole) {
+        return sysRoleManager.pageQuery(sysRole);
+    }
 
-	@Override
-	public List<SysRole> getAll() {
-		return sysRoleManager.getAll();
-	}
-	
-	@Override
-	public SysRole update(SysRole sysRole){
-		return sysRoleManager.update(sysRole);
-	}
+    @Override
+    public List<SysRole> getAll() {
+        return sysRoleManager.getAll();
+    }
+    
+    @Override
+    public SysRole update(SysRole sysRole){
+        return sysRoleManager.update(sysRole);
+    }
 
 }

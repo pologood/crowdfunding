@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	
-	<modelVersion>4.0.0</modelVersion>
-	
-	<parent>
-		<groupId>com.youku.share.crowdfunding</groupId>
-		<artifactId>crowdfunding-parent</artifactId>
-		<version>1.0.0-SNAPSHOT</version>
-	</parent>
+    
+    <modelVersion>4.0.0</modelVersion>
+    
+    <parent>
+        <groupId>com.youku.share.crowdfunding</groupId>
+        <artifactId>crowdfunding-parent</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
 
-	<artifactId>crowdfunding-util</artifactId>
-	<name>Crowdfunding Util</name>
+    <artifactId>crowdfunding-util</artifactId>
+    <name>Crowdfunding Util</name>
 
     <properties>
         <servlet_api.version>2.4</servlet_api.version>
     </properties>
 
-	<dependencies>
-		
+    <dependencies>
+        
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-api</artifactId>
@@ -27,10 +27,10 @@
             <artifactId>log4j-core</artifactId>
         </dependency>
     
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-		</dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
     
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -56,9 +56,9 @@
             <artifactId>spring-context-support</artifactId>
         </dependency>
     
-	</dependencies>
+    </dependencies>
 
-	<build>
-	</build>
-	
+    <build>
+    </build>
+    
 </project>

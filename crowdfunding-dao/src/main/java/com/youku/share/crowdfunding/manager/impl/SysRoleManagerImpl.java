@@ -17,79 +17,79 @@ import com.youku.share.crowdfunding.manager.SysRoleManager;
 
 @Component
 public class SysRoleManagerImpl implements SysRoleManager{
-	
-	@Autowired
-	private SysRoleMapper sysRoleMapper;
-	@Autowired
-	private SysRoleAuthoritieMappingMapper sysRoleAuthoritieMappingMapper;
-	@Autowired
-	private SysUserRoleMappingMapper sysUserRoleMappingMapper;
-	
-	public SysRole save(SysRole sysRole){
-		sysRoleMapper.insertSelective(sysRole);		
-		return sysRole;
-	}
-	
-	@Override
-	public Page<SysRole> pageQuery(SysRole sysRole) {
-		List<SysRole> userList = sysRoleMapper.selectPage(sysRole);
-		Page<SysRole> page = new Page<SysRole>();
-		page.setRows(userList);
-		page.setRecords(sysRoleMapper.pageCount(sysRole));
-		page.setPageParameter(sysRole);
-		page.pageCalculation(new SysRole[]{});
-		return page;
-	}
-	
-	@Transactional
-	public boolean delete(Long roleId){
-		SysRole oldSysRole = sysRoleMapper.selectByPrimaryKey(roleId);
-		List<SysUserRoleMapping> oldSysUserRoleMappingList = oldSysRole.getSysUserRoleMappingList();
-		if(oldSysUserRoleMappingList != null && oldSysUserRoleMappingList.size() > 0){
-			for(SysUserRoleMapping sysRoleRoleMapping : oldSysUserRoleMappingList){
-				sysUserRoleMappingMapper.deleteByPrimaryKey(sysRoleRoleMapping.getUrMappingId());
-			}
-		}
-		List<SysRoleAuthoritieMapping> oldSysRoleAuthoritieMappingList = oldSysRole.getSysRoleAuthoritieMappingList();
-		if(oldSysRoleAuthoritieMappingList != null && oldSysRoleAuthoritieMappingList.size() > 0){
-			for(SysRoleAuthoritieMapping sysRoleAuthoritieMapping : oldSysRoleAuthoritieMappingList){
-				sysRoleAuthoritieMappingMapper.deleteByPrimaryKey(sysRoleAuthoritieMapping.getRaMappingId());
-			}
-		}
-		return sysRoleMapper.deleteByPrimaryKey(roleId) > 0;
-	}
+    
+    @Autowired
+    private SysRoleMapper sysRoleMapper;
+    @Autowired
+    private SysRoleAuthoritieMappingMapper sysRoleAuthoritieMappingMapper;
+    @Autowired
+    private SysUserRoleMappingMapper sysUserRoleMappingMapper;
+    
+    public SysRole save(SysRole sysRole){
+        sysRoleMapper.insertSelective(sysRole);        
+        return sysRole;
+    }
+    
+    @Override
+    public Page<SysRole> pageQuery(SysRole sysRole) {
+        List<SysRole> userList = sysRoleMapper.selectPage(sysRole);
+        Page<SysRole> page = new Page<SysRole>();
+        page.setRows(userList);
+        page.setRecords(sysRoleMapper.pageCount(sysRole));
+        page.setPageParameter(sysRole);
+        page.pageCalculation(new SysRole[]{});
+        return page;
+    }
+    
+    @Transactional
+    public boolean delete(Long roleId){
+        SysRole oldSysRole = sysRoleMapper.selectByPrimaryKey(roleId);
+        List<SysUserRoleMapping> oldSysUserRoleMappingList = oldSysRole.getSysUserRoleMappingList();
+        if(oldSysUserRoleMappingList != null && oldSysUserRoleMappingList.size() > 0){
+            for(SysUserRoleMapping sysRoleRoleMapping : oldSysUserRoleMappingList){
+                sysUserRoleMappingMapper.deleteByPrimaryKey(sysRoleRoleMapping.getUrMappingId());
+            }
+        }
+        List<SysRoleAuthoritieMapping> oldSysRoleAuthoritieMappingList = oldSysRole.getSysRoleAuthoritieMappingList();
+        if(oldSysRoleAuthoritieMappingList != null && oldSysRoleAuthoritieMappingList.size() > 0){
+            for(SysRoleAuthoritieMapping sysRoleAuthoritieMapping : oldSysRoleAuthoritieMappingList){
+                sysRoleAuthoritieMappingMapper.deleteByPrimaryKey(sysRoleAuthoritieMapping.getRaMappingId());
+            }
+        }
+        return sysRoleMapper.deleteByPrimaryKey(roleId) > 0;
+    }
 
-	@Transactional
-	public SysRole update(SysRole sysRole) {
-		SysRole oldSysRole = sysRoleMapper.selectByPrimaryKey(sysRole.getRoleId());
-		List<SysRoleAuthoritieMapping> oldSysRoleAuthoritieMappingList = oldSysRole.getSysRoleAuthoritieMappingList();
-		if(oldSysRoleAuthoritieMappingList != null && oldSysRoleAuthoritieMappingList.size() > 0){
-			for(SysRoleAuthoritieMapping sysRoleAuthoritieMapping : oldSysRoleAuthoritieMappingList){
-				sysRoleAuthoritieMappingMapper.deleteByPrimaryKey(sysRoleAuthoritieMapping.getRaMappingId());
-			}
-		}
-		
-		sysRoleMapper.updateByPrimaryKeySelective(sysRole);
-		
-		List<SysRoleAuthoritieMapping> sysRoleAuthoritieMappingList = oldSysRole.getSysRoleAuthoritieMappingList();
-		if(sysRoleAuthoritieMappingList != null && sysRoleAuthoritieMappingList.size() > 0){
-			for(SysRoleAuthoritieMapping sysRoleAuthoritieMapping : sysRoleAuthoritieMappingList){
-				sysRoleAuthoritieMapping.setRoleId(sysRole.getRoleId());
-				sysRoleAuthoritieMappingMapper.insert(sysRoleAuthoritieMapping);
-			}
-		}
-		
-		return sysRole;
-	}
+    @Transactional
+    public SysRole update(SysRole sysRole) {
+        SysRole oldSysRole = sysRoleMapper.selectByPrimaryKey(sysRole.getRoleId());
+        List<SysRoleAuthoritieMapping> oldSysRoleAuthoritieMappingList = oldSysRole.getSysRoleAuthoritieMappingList();
+        if(oldSysRoleAuthoritieMappingList != null && oldSysRoleAuthoritieMappingList.size() > 0){
+            for(SysRoleAuthoritieMapping sysRoleAuthoritieMapping : oldSysRoleAuthoritieMappingList){
+                sysRoleAuthoritieMappingMapper.deleteByPrimaryKey(sysRoleAuthoritieMapping.getRaMappingId());
+            }
+        }
+        
+        sysRoleMapper.updateByPrimaryKeySelective(sysRole);
+        
+        List<SysRoleAuthoritieMapping> sysRoleAuthoritieMappingList = oldSysRole.getSysRoleAuthoritieMappingList();
+        if(sysRoleAuthoritieMappingList != null && sysRoleAuthoritieMappingList.size() > 0){
+            for(SysRoleAuthoritieMapping sysRoleAuthoritieMapping : sysRoleAuthoritieMappingList){
+                sysRoleAuthoritieMapping.setRoleId(sysRole.getRoleId());
+                sysRoleAuthoritieMappingMapper.insert(sysRoleAuthoritieMapping);
+            }
+        }
+        
+        return sysRole;
+    }
 
-	@Override
-	public SysRole find(Long id) {
-		return sysRoleMapper.selectByPrimaryKey(id);
-	}
+    @Override
+    public SysRole find(Long id) {
+        return sysRoleMapper.selectByPrimaryKey(id);
+    }
 
-	@Override
-	public List<SysRole> getAll() {
-		return sysRoleMapper.selectAll();
-	}
-	
+    @Override
+    public List<SysRole> getAll() {
+        return sysRoleMapper.selectAll();
+    }
+    
 }

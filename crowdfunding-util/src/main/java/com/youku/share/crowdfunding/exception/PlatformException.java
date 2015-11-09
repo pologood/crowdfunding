@@ -9,13 +9,13 @@ import com.youku.share.crowdfunding.util.Utils;
  * */
 public class PlatformException extends BaseException{
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -3394180227584580854L;
-	
-	public PlatformException(){
-		super(Utils.generateSerialNumber(),"系统出错");
-	}
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -3394180227584580854L;
+    
+    public PlatformException(){
+        super(Utils.generateSerialNumber(),"系统出错");
+    }
 }
  

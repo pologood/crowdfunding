@@ -9,16 +9,16 @@ import com.youku.share.crowdfunding.util.Utils;
  * */
 public class BusinessException extends BaseException{
 
-	private String businessRuleCode;
-	private boolean forwardToSelf = false;
-	private String targetURL;
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -1535457929165095468L;
-	
-	public BusinessException(){
-		super(Utils.generateSerialNumber(),"违反业务规则");
-	}
+    private String businessRuleCode;
+    private boolean forwardToSelf = false;
+    private String targetURL;
+    
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -1535457929165095468L;
+    
+    public BusinessException(){
+        super(Utils.generateSerialNumber(),"违反业务规则");
+    }
 }
