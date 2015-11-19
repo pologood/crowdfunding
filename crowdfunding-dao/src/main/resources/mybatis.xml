@@ -13,6 +13,6 @@
         <setting name="multipleResultSetsEnabled" value="true" />
         <setting name="useColumnLabel" value="true" />
         <setting name="defaultStatementTimeout" value="25000" />
-        
+        <setting name="logImpl" value="LOG4J2"/>
     </settings>
 </configuration>
